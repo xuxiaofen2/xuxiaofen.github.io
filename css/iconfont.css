@@ -1,0 +1,33 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1578239916458'); /* IE9 */
+  src: url('iconfont.eot?t=1578239916458#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAARUAAsAAAAACPAAAAQHAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDMgqFCIRoATYCJAMUCwwABCAFhG0HUBv8BxEVnJfJfhzkpqmr4mvxxGFWRRNt/nsQj9/U5kmys1mVgZwyucjeIvInsJ0C010A+NbchyB01MmS/PbIoy2+BZ5sevDHveO/rAk2n2W5/NkY0/bALozisAsooL19UaIFUqLcAzzDhQm8DAFc0pEHqVKtThMcDMIsASTYvWt7HJcDE1MtOAj+kI0GmY0PR01RF4BZ+uflDYXEAYVPIyxs0KVqJyo8T/lqtA79H6KV6sIrzwfctoEG8gAGpH9oIIg2U3nQuJ/fGSoALg4K9Tzl8/bPt7wa/f//X02PTK74hwcGhaBB/AiGOERU0JuRY2XGNrZHGwqNW1AJgVejjcwv5jO5WHYPJD8CLwsDFQqNzps6VaIE8LpUcRONiPGky8KpSTp50mR+aMG05E3ViqtF7bRFIhbPk9ACaw9dT68DC6YtWtrEE7V4s+tKYN3Cha47dT4ox21Npbt2HnE9IuFwzI0bTW7eDEyLNE4b3+YlixHWtQsSRyJNqQi90Ikj4k1dKOItsvGnLYDQ/IB4C914BVE1dYs/bRFuy4hCKbVw/pKkdtqm5KVprWzpzfluONx+4frNEdqLzsMXbLB20bZk4XD5fsFhw6BHsEviwb2DcCONY+4l7lK//oLowaHt7j332/kvR0B8e2iIMy9sRZekFxNtaQjWHEsy7/MzftF+tvfk/DlJjpnzTRqLCyhYYFmukvMD5sTfvycMkKrTnLAHBeaXXPvkyeJUmVJN0QYBjVqs1bGxei2TTCmNtgFhWrG9gbBzITpX9AVHb4/zykFjqx//ARSZm0VNO3xkuhJJ9WZqGq2bza+bs1uuOVuSDcz763NUvHJ5U489t26CcaaoQ4erTlfBmbN6KSSxXgVVjxmzehgr3WnqrHePIvtt7dg/7z9xq+UtFy/qWvL8CQIdZjIUgP/XGdEtdWRMPARAU9Q2+H+OPqh7nULf4WrHRbnaxi/zzbEGgNslcmwnTb60g4LU7AlTYARAVX/V6PSZMFbG8SF8XdRY2wZ1o7HhNIkk4n45pqSpK0FwSGqDIoq0oHHIghgiD/iwFAE/DuXBJTfVt1sS0x+NmGggFxMAhATsAkU8ToEmARcRQ9wDH8l4B34SiAaXGEl8oMXwKPbmiTELNlr+ya45KcktN0b1O/QeZnaqdck3uNoo9U3nzb4hgctYUn/0IKJIcY70CtchhEyFs8MqjREph7ZVYU9q1hyPbnhizIKNWP4Ju+ak1M5y43v/O/QeZo5p+lH9BlfbP9HT0KVA3gwpVdO2DK8/ekBE8TTFORKv6EMQU5ko4eMcVmkwORLlQEutVFpDU78pLuMewEV4tE+UaDHiEz9n3XLERcXMq3mISPto5rjsrMHn8xZtOjoCAA==') format('woff2'),
+  url('iconfont.woff?t=1578239916458') format('woff'),
+  url('iconfont.ttf?t=1578239916458') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1578239916458#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-home:before {
+  content: "\e6a9";
+}
+
+.icon-search:before {
+  content: "\e661";
+}
+
+.icon-menu_hamburger:before {
+  content: "\e97e";
+}
+
+.icon-admin:before {
+  content: "\e619";
+}
+

@@ -7,7 +7,9 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
-<link rel="stylesheet" type="text/css" href="assets/waifu.min.css?v=1.4.2" />
+<link rel="stylesheet" type="text/css" href="/assets/waifu.min.css?v=1.4.2" />
+<link rel="stylesheet" type="text/css" href="/css/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/css/common.css" />
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -80,12 +82,10 @@
 
 
 
-<meta name="description" content="我们都是钻石狗">
 <meta property="og:type" content="website">
 <meta property="og:title" content="世外天堂">
-<meta property="og:url" content="http://www.outerheaven.com/index.html">
+<meta property="og:url" content="http://www.outerheavendd.com/index.html">
 <meta property="og:site_name" content="世外天堂">
-<meta property="og:description" content="我们都是钻石狗">
 <meta property="article:author" content="漆黑の翼">
 <meta property="article:tag" content="小翼，世外天堂">
 <meta property="article:tag" content="开发者">
@@ -127,11 +127,43 @@
 
 
 
-  <link rel="canonical" href="http://www.outerheaven.com/"/>
+  <link rel="canonical" href="http://www.outerheavendd.com/"/>
 
 
-
-
+		<div class="head">
+		<a href="https://github.com/xuxiaofen2" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+			<div id="navbar">
+				<div id="navcontain">
+					<div class="mobile">
+						<div class="navtitle">世外天堂</div>
+						<button type="button" id="hamburger" class="iconfont icon-menu_hamburger float-right" onclick="slide()"></button>
+					</div>
+					<div class="navlist">
+						<ul id="navl">
+							<li><a href="/"><i class="menu-item-icon fa fa-home">首页</i></a></li>
+							<li><a href="/tags"><i class="menu-item-icon fa fa-tags">标签</i></a></li>
+							<li><a href="/categories"><i class="menu-item-icon fa fa-th">分类</i></a></li>
+							<li><a href="/archives"><i class="menu-item-icon fa fa-archive">归档</i></a></li>
+							<li><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search ">搜索</i></a></li>
+							<li><a href="/about"><i class="menu-item-icon fa fa-user">关于</i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		function slide() {
+			var n = document.getElementById('navl');
+			var h = document.getElementById('navbar');
+			if (n.style.display == 'none') {
+				n.style.display = 'block';
+				h.style.height = '360px';
+			} else {
+				n.style.display = 'none';
+				h.style.height = '60px';
+			}
+		}
+	</script>	
 
   <title>世外天堂</title>
   
@@ -143,7 +175,10 @@
 
 
 
-  <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <style>
+  body{background-image:url(https://acg.toubiec.cn/acgurl?cid=acg&return=ssl);background-size:cover;background-attachment: fixed;}
+  .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+  </style>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -155,13 +190,12 @@
 
   <div class="container sidebar-position-left 
   page-home">
-    <div class="headband"></div>
-    <a href="https://github.com/xuxiaofen2" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+    <!-- <div class="headband"></div>-->
+    
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
-
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
@@ -170,10 +204,9 @@
       </a>
     </div>
       
-        <p class="site-subtitle">做前端，先从自己的博客开始</p>
+        <p class="site-subtitle">做前端，先从博客开始</p>
       
   </div>
-
   <div class="site-nav-toggle">
     <button>
       <span class="btn-bar"></span>
@@ -182,7 +215,6 @@
     </button>
   </div>
 </div>
-
 <nav class="site-nav">
   
 
@@ -199,67 +231,50 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
-            
-            日程表
-          </a>
-        </li>
-      
 
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
       
     </ul>
   
 
   
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
 </nav>
 
 
-
- </div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="//music.163.com/outchain/player?type=2&id=509106775&auto=1&height=66"></iframe> </div>
     </header>
 
     <main id="main" class="main">
@@ -282,7 +297,156 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.outerheaven.com/2020/02/06/exp/">
+    <link itemprop="mainEntityOfPage" href="http://www.outerheavendd.com/2020/02/07/vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="漆黑の翼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="世外天堂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/07/vue/" itemprop="url">Vue实现购物车</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-07T14:46:14+08:00">
+                2020-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          主要实现的功能有：商品的单价，商品的总价，商品的单选和全选，商品数量的修改，商品的删除等功能。该小型项目采用Vue框架作为主要操作DOM的手段，代码完全原创实现效果如下：
+1234567891011121314151617181920212223242526272829303132333435363
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/07/vue/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.outerheavendd.com/2020/02/06/exp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="漆黑の翼">
@@ -375,225 +539,28 @@
       
         
           
-            <table>
-<thead>
-<tr>
-<th>元字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/</td>
-<td>将下一个字符标记符、或一个向后引用、或一个八进制转义符。例如，“\n”匹配\n。“\n”匹配换行符。序列“\”匹配“\”而“(”则匹配“(”。即相当于多种编程语言中都有的“转义字符”的概念。</td>
-</tr>
-<tr>
-<td>^</td>
-<td>匹配输入字行首。如果设置了RegExp对象的Multiline属性，^也匹配“\n”或“\r”之后的位置。</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配输入行尾。如果设置了RegExp对象的Multiline属性，$也匹配“\n”或“\r”之前的位置。</td>
-</tr>
-<tr>
-<td>*</td>
-<td>匹配前面的子表达式任意次。例如，zo<em>能匹配“z”，也能匹配“zo”以及“zoo”。</em>等价于{0,}。</td>
-</tr>
-<tr>
-<td>+</td>
-<td>匹配前面的子表达式一次或多次(大于等于1次）。例如，“zo+”能匹配“zo”以及“zoo”，但不能匹配“z”。+等价于{1,}。</td>
-</tr>
-<tr>
-<td>?</td>
-<td>匹配前面的子表达式零次或一次。例如，“do(es)?”可以匹配“do”或“does”。?等价于{0,1}。</td>
-</tr>
-<tr>
-<td>{n}</td>
-<td>n是一个非负整数。匹配确定的n次。例如，“o{2}”不能匹配“Bob”中的“o”，但是能匹配“food”中的两个o。</td>
-</tr>
-<tr>
-<td>{n,}</td>
-<td>n是一个非负整数。至少匹配n次。例如，“o{2,}”不能匹配“Bob”中的“o”，但能匹配“foooood”中的所有o。“o{1,}”等价于“o+”。“o{0,}”则等价于“o*”。</td>
-</tr>
-<tr>
-<td>{n,m}</td>
-<td>m和n均为非负整数，其中n&lt;=m。最少匹配n次且最多匹配m次。例如，“o{1,3}”将匹配“fooooood”中的前三个o为一组，后三个o为一组。“o{0,1}”等价于“o?”。请注意在逗号和两个数之间不能有空格。</td>
-</tr>
-<tr>
-<td>?</td>
-<td>当该字符紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的。非贪婪模式尽可能少地匹配所搜索的字符串，而默认的贪婪模式则尽可能多地匹配所搜索的字符串。例如，对于字符串“oooo”，“o+”将尽可能多地匹配“o”，得到结果[“oooo”]，而“o+?”将尽可能少地匹配“o”，得到结果 [‘o’, ‘o’, ‘o’, ‘o’]</td>
-</tr>
-<tr>
-<td>.点</td>
-<td>匹配除“\n”和”\r”之外的任何单个字符。要匹配包括“\n”和”\r”在内的任何字符，请使用像“[\s\S]”的模式。</td>
-</tr>
-<tr>
-<td>(pattern)</td>
-<td>匹配pattern并获取这一匹配。所获取的匹配可以从产生的Matches集合得到，在VBScript中使用SubMatches集合，在JScript中则使用$0…$9属性。要匹配圆括号字符，请使用“(”或“)”。</td>
-</tr>
-<tr>
-<td>(?:pattern)</td>
-<td>非获取匹配，匹配pattern但不获取匹配结果，不进行存储供以后使用。这在使用或字符“(</td>
-</tr>
-<tr>
-<td>(?=pattern)</td>
-<td>非获取匹配，正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串，该匹配不需要获取供以后使用。例如，“Windows(?=95</td>
-</tr>
-<tr>
-<td>(?!pattern)</td>
-<td>非获取匹配，正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串，该匹配不需要获取供以后使用。例如“Windows(?!95</td>
-</tr>
-<tr>
-<td>(?&lt;=pattern)</td>
-<td>非获取匹配，反向肯定预查，与正向肯定预查类似，只是方向相反。例如，“(?&lt;=95</td>
-</tr>
-<tr>
-<td>(?&lt;!patte_n)</td>
-<td>非获取匹配，反向否定预查，与正向否定预查类似，只是方向相反。例如“(?&lt;!95</td>
-</tr>
-<tr>
-<td>x&#124;y</td>
-<td>匹配x或y。例如，“z&#124;food”能匹配“z”或“food”(此处请谨慎)。“[z&#124;f]ood”则匹配“zood”或“food”。</td>
-</tr>
-<tr>
-<td>[xyz]</td>
-<td>字符集合。匹配所包含的任意一个字符。例如，“[abc]”可以匹配“plain”中的“a”。</td>
-</tr>
-<tr>
-<td>[^xyz]</td>
-<td>负值字符集合。匹配未包含的任意字符。例如，“[^abc]”可以匹配“plain”中的“plin”任一字符,匹配除了xyz以外的任意字符</td>
-</tr>
-<tr>
-<td>[a-z]</td>
-<td>字符范围。匹配指定范围内的任意字符。例如，“[a-z]”可以匹配“a”到“z”范围内的任意小写字母字符。   注意:只有连字符在字符组内部时,并且出现在两个字符之间时,才能表示字符的范围; 如果出字符组的开头,则只能表示连字符本身.</td>
-</tr>
-<tr>
-<td>[^a-z]</td>
-<td>负值字符范围。匹配任何不在指定范围内的任意字符。例如，“[^a-z]”可以匹配任何不在“a”到“z”范围内的任意字符。</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配一个单词的边界，也就是指单词和空格间的位置（即正则表达式的“匹配”有两种概念，一种是匹配字符，一种是匹配位置，这里的\b就是匹配位置的）。例如，“er\b”可以匹配“never”中的“er”，但不能匹配“verb”中的“er”；“\b1_”可以匹配“1_23”中的“1_”，但不能匹配“21_3”中的“1_”。</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>匹配非单词边界。“er\B”能匹配“verb”中的“er”，但不能匹配“never”中的“er”。</td>
-</tr>
-<tr>
-<td>\cx</td>
-<td>匹配由x指明的控制字符。例如，\cM匹配一个Control-M或回车符。x的值必须为A-Z或a-z之一。否则，将c视为一个原义的“c”字符。</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>匹配一个数字字符。等价于[0-9]。grep 要加上-P，perl正则支持</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配一个非数字字符。等价于[^0-9]。grep要加上-P，perl正则支持</td>
-</tr>
-<tr>
-<td>\f</td>
-<td>匹配一个换页符。等价于\x0c和\cL。</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>匹配一个换行符。等价于\x0a和\cJ。</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>匹配一个回车符。等价于\x0d和\cM。</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任何不可见字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任何可见字符。等价于[^ \f\n\r\t\v]。</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>匹配一个制表符。等价于\x09和\cI。</td>
-</tr>
-<tr>
-<td>\v</td>
-<td>匹配一个垂直制表符。等价于\x0b和\cK。</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配包括下划线的任何单词字符。类似但不等价于“[A-Za-z0-9_]”，这里的”单词”字符使用Unicode字符集。</td>
-</tr>
-<tr>
-<td>\W</td>
-<td>匹配任何非单词字符。等价于“[^A-Za-z0-9_]”。</td>
-</tr>
-<tr>
-<td>\xn</td>
-<td>匹配n，其中n为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，“\x41”匹配“A”。“\x041”则等价于“\x04&amp;1”。正则表达式中可以使用ASCII编码。</td>
-</tr>
-<tr>
-<td>\num</td>
-<td>匹配num，其中num是一个正整数。对所获取的匹配的引用。例如，“(.)\1”匹配两个连续的相同字符。</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>标识一个八进制转义值或一个向后引用。如果\n之前至少n个获取的子表达式，则n为向后引用。否则，如果n为八进制数字（0-7），则n为一个八进制转义值。</td>
-</tr>
-<tr>
-<td>\nm</td>
-<td>标识一个八进制转义值或一个向后引用。如果\nm之前至少有nm个获得子表达式，则nm为向后引用。如果\nm之前至少有n个获取，则n为一个后跟文字m的向后引用。如果前面的条件都不满足，若n和m均为八进制数字（0-7），则\nm将匹配八进制转义值nm。</td>
-</tr>
-<tr>
-<td>\nml</td>
-<td>如果n为八进制数字（0-7），且m和l均为八进制数字（0-7），则匹配八进制转义值nml。</td>
-</tr>
-<tr>
-<td>\un</td>
-<td>匹配n，其中n是一个用四个十六进制数字表示的Unicode字符。例如，\u00A9匹配版权符号（&copy;）。</td>
-</tr>
-<tr>
-<td>\p{P}</td>
-<td>小写 p 是 property 的意思，表示 Unicode 属性，用于 Unicode 正表达式的前缀。中括号内的“P”表示Unicode 字符集七个字符属性之一：标点字符。</td>
-</tr>
-<tr>
-<td>&lt;  &gt;</td>
-<td>匹配词（word）的开始（&lt;）和结束（&gt;）。例如正则表达式&lt;the&gt;能够匹配字符串”for the wise”中的”the”，但是不能匹配字符串”otherwise”中的”the”。注意：这个元字符不是所有的软件都支持的。</td>
-</tr>
-<tr>
-<td>( )</td>
-<td>将( 和 ) 之间的表达式定义为“组”（group），并且将匹配这个表达式的字符保存到一个临时区域（一个正则表达式中最多可以保存9个），它们可以用 \1 到\9 的符号来引用。</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>?=exp</td>
-<td>正向前瞻</td>
-<td>零宽度，断言出现的位置后面能匹配exp，则匹配成功，匹配不占据匹配长度，非捕获</td>
-</tr>
-<tr>
-<td>?!exp</td>
-<td>负向前瞻</td>
-<td>零宽度，断言出现的位置后面不能匹配exp，则匹配成功，匹配不占据匹配长度，非捕获</td>
-</tr>
-<tr>
-<td>?:exp</td>
-<td>正向前瞻</td>
-<td>非捕获性分组，断言出现位置后面匹配exp，占据查询的匹配长度</td>
-</tr>
-</tbody></table>
-<pre><code>正则表达式应用——实例应用</code></pre><p>1.验证用户名和密码：（”^[a-zA-Z]\w{5,15}$”）正确格式：”[A-Z][a-z]_[0-9]”组成,并且第一个字必须为字母6-16位；<br>2.验证电话号码：（”^(\d{3,4}-)\d{7,8}$”）正确格式：xxx/xxxx-xxxxxxx/xxxxxxxx；<br>3.验证手机号码（包含虚拟号码和新号码段）：”^1([38][0-9]|4[5-9]|5[0-3,5-9]|66|7[0-8]|9[89])[0-9]{8}$”；<br>4.验证身份证号（15位）：”\d{14}[[0-9],0-9xX]”，（18位）：”\d{17}(\d|X|x)”；<br>5.验证Email地址：(“^\w+([-+.]\w+)<em>@\w+([-.]\w+)*.\w+([-.]\w+)</em>$”)；<br>6.只能输入由数字和26个英文字母组成的字符串：(“^[A-Za-z0-9]+$”)；<br>7.整数或者小数：^[0-9]+([.][0-9]+){0,1}$<br>8.只能输入数字：”^[0-9]<em>$”。<br>9.只能输入n位的数字：”^\d{n}$”。<br>10.只能输入至少n位的数字：”^\d{n,}$”。<br>11.只能输入m-n位的数字：”^\d{m,n}$”。<br>12.只能输入零和非零开头的数字：”^(0|[1-9][0-9]</em>)$”。<br>13.只能输入有两位小数的正实数：”^[0-9]+(.[0-9]{2})?$”。<br>14.只能输入有1-3位小数的正实数：”^[0-9]+(.[0-9]{1,3})?$”。<br>15.只能输入非零的正整数：”^+?[1-9][0-9]<em>$”。<br>16.只能输入非零的负整数：”^-[1-9][0-9]</em>$”。<br>17.只能输入长度为3的字符：”^.{3}$”。<br>18.只能输入由26个英文字母组成的字符串：”^[A-Za-z]+$”。<br>19.只能输入由26个大写英文字母组成的字符串：”^[A-Z]+$”。<br>20.只能输入由26个小写英文字母组成的字符串：”^[a-z]+$”。<br>21.验证是否含有^%&amp;’,;=?$&quot;等字符：”[%&amp;’,;=?$\^]+”。<br>22.只能输入汉字：”^[\u4e00-\u9fa5]{0,}$”。<br>23.验证URL：”^http://([\w-]+.)+[\w-]+(/[\w-./?%&amp;=]<em>)?$”。<br>24.验证一年的12个月：”^(0?[1-9]|1[0-2])$”正确格式为：”01”～”09”和”10”～”12”。<br>25.验证一个月的31天：”^((0?[1-9])|((1|2)[0-9])|30|31)$”正确格式为；”01”～”09”、”10”～”29”和“30”~“31”。<br>26.获取日期正则表达式：\d{4}[年|-|.]\d{\1-\12}[月|-|.]\d{\1-\31}日?<br>评注：可用来匹配大多数年月日信息。<br>27.匹配双字节字符(包括汉字在内)：[^\x00-\xff]<br>评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）<br>28.匹配空白行的正则表达式：\n\s*\r<br>评注：可以用来删除空白行<br>29.匹配HTML标记的正则表达式：&lt;(\S</em>?)[^&gt;]<em>&gt;.</em>?&lt;/&gt;|&lt;.<em>? /&gt;<br>评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力<br>30.匹配首尾空白字符的正则表达式：^\s</em>|\s<em>$<br>评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式<br>31.匹配网址URL的正则表达式：[a-zA-z]+://[^\s]</em><br>评注：网上流传的版本功能很有限，上面这个基本可以满足需求<br>32.匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$<br>评注：表单验证时很实用<br>33.匹配腾讯QQ号：[1-9][0-9]{4,}<br>评注：腾讯QQ号从10 000 开始<br>34.匹配中国邮政编码：[1-9]\d{5}(?!\d)<br>评注：中国邮政编码为6位数字<br>35.匹配ip地址：([1-9]{1,3}.){3}[1-9]。<br>评注：提取ip地址时有用<br>36.匹配MAC地址：([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]</p>
-
           
+
+
+元字符
+描述
+
+
+
+/
+将下一个字符标记符、或一个向后引用、或一个八进制转义符。例如，“\n”匹配\n。“\n”匹配换行符。序列“\”匹配“\”而“(”则匹配“(”。即相当于多种编程语言中都有的“转义字符”的概念。
+
+
+^
+匹配输入字行首。如果设置了RegExp对象的Multiline属性，^
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/06/exp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -640,7 +607,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.outerheaven.com/2020/02/06/api/">
+    <link itemprop="mainEntityOfPage" href="http://www.outerheavendd.com/2020/02/06/api/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="漆黑の翼">
@@ -733,9 +700,15 @@
       
         
           
-            <p>头像：<a href="http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100" target="_blank" rel="noopener">http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100</a><br>高清头像： <a href="http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640" target="_blank" rel="noopener">http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640</a><br>群头像：<a href="http://p.qlogo.cn/gh/群号/群号/100" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/100</a><br>群高清头像：<a href="http://p.qlogo.cn/gh/群号/群号/640" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/640</a><br>QQ资料：tencent://ContactInfo/?subcmd=ViewInfo&amp;puin=0&amp;uin=QQ号&amp;fuin=QQ号<br>加好友：tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=QQ号&amp;fuin=QQ号<br>临时会话：tencent://Message/?Uin=QQ号&amp;websiteName=qzone.qq.com&amp;Menu=yes&amp;fuin=QQ号</p>
-
-          
+          头像：http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100高清头像： http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640群头像：http://p.qlogo.cn/gh/群号/群号/100
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/06/api/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -809,7 +782,7 @@
                 alt="漆黑の翼" />
             
               <p class="site-author-name" itemprop="name">漆黑の翼</p>
-              <p class="site-description motion-element" itemprop="description">我们都是钻石狗</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
           <nav class="site-state motion-element">
@@ -817,9 +790,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -830,7 +803,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -841,7 +814,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -851,16 +824,6 @@
 
           
 
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/xuxiaofen2" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
-                  </span>
-                
-            </div>
           
 
           
@@ -906,9 +869,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="post-meta-divider">|</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">漆黑の翼</span>
 
@@ -916,15 +881,16 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
+
+<div class="powered-by">
+  <i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span>
   <span class="post-meta-divider">|</span>
+  <i class="fa fa-eye"></i><span id="busuanzi_value_site_uv"></span>
+</div>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -971,6 +937,8 @@
   
 
 
+  
+
 
 
 
@@ -1009,6 +977,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1075,6 +1048,323 @@
 
   
 
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
@@ -1094,9 +1384,8 @@
 
   
 
-  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   				<!-- 实现拖动效果，需引入 JQuery UI -->
-				<script src="assets/jquery-ui.min.js?v=1.12.1"></script>
+				<script src="/assets/jquery-ui.min.js?v=1.12.1"></script>
 				<div class="waifu">
 					<div class="waifu-tips"></div>
 					<canvas id="live2d" class="live2d"></canvas>
@@ -1109,8 +1398,8 @@
 						<span class="fui-cross"></span>
 					</div>
 				</div>
-				<script src="assets/waifu-tips.min.js?v=1.4.2"></script>
-				<script src="assets/live2d.min.js?v=1.0.5"></script>
+				<script src="/assets/waifu-tips.min.js?v=1.4.2"></script>
+				<script src="/assets/live2d.min.js?v=1.0.5"></script>
 				<script type="text/javascript">
 					/* 可直接修改部分参数 */
 					live2d_settings['modelId'] = 3; // 默认模型 ID
@@ -1126,7 +1415,7 @@
 					live2d_settings['waifuToolTop'] = '0px'; // 工具栏顶部边距
 					live2d_settings['waifuDraggable'] = 'axis-x'; // 拖拽样式
 					/* 在 initModel 前添加 */
-					initModel("assets/waifu-tip2s.json?v=1.4.2")
+					initModel("/assets/waifu-tip2s.json?v=1.4.2")
 				</script>
 </body>
 </html>

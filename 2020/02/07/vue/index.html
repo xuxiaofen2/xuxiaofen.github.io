@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+<link rel="stylesheet" type="text/css" href="/assets/waifu.min.css?v=1.4.2" />
+<link rel="stylesheet" type="text/css" href="/css/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue，标签，购物车," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="主要实现的功能有：商品的单价，商品的总价，商品的单选和全选，商品数量的修改，商品的删除等功能。该小型项目采用Vue框架作为主要操作DOM的手段，代码完全原创实现效果如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue实现购物车">
+<meta property="og:url" content="http://www.outerheavendd.com/2020/02/07/vue/index.html">
+<meta property="og:site_name" content="世外天堂">
+<meta property="og:description" content="主要实现的功能有：商品的单价，商品的总价，商品的单选和全选，商品数量的修改，商品的删除等功能。该小型项目采用Vue框架作为主要操作DOM的手段，代码完全原创实现效果如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616">
+<meta property="og:image" content="http://www.outerheavendd.com/images/shop.jpg">
+<meta property="article:published_time" content="2020-02-07T06:46:14.000Z">
+<meta property="article:modified_time" content="2020-02-07T14:15:22.906Z">
+<meta property="article:author" content="漆黑の翼">
+<meta property="article:tag" content="Vue，标签，购物车">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.outerheavendd.com/images/shop.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.outerheavendd.com/2020/02/07/vue/"/>
+
+
+		<div class="head">
+		<a href="https://github.com/xuxiaofen2" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+			<div id="navbar">
+				<div id="navcontain">
+					<div class="mobile">
+						<div class="navtitle">世外天堂</div>
+						<button type="button" id="hamburger" class="iconfont icon-menu_hamburger float-right" onclick="slide()"></button>
+					</div>
+					<div class="navlist">
+						<ul id="navl">
+							<li><a href="/"><i class="menu-item-icon fa fa-home">首页</i></a></li>
+							<li><a href="/tags"><i class="menu-item-icon fa fa-tags">标签</i></a></li>
+							<li><a href="/categories"><i class="menu-item-icon fa fa-th">分类</i></a></li>
+							<li><a href="/archives"><i class="menu-item-icon fa fa-archive">归档</i></a></li>
+							<li><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search ">搜索</i></a></li>
+							<li><a href="/about"><i class="menu-item-icon fa fa-user">关于</i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		function slide() {
+			var n = document.getElementById('navl');
+			var h = document.getElementById('navbar');
+			if (n.style.display == 'none') {
+				n.style.display = 'block';
+				h.style.height = '360px';
+			} else {
+				n.style.display = 'none';
+				h.style.height = '60px';
+			}
+		}
+	</script>	
+
+  <title>Vue实现购物车 | 世外天堂</title>
+  
+
+
+
+
+
+
+
+
+  <style>
+  body{background-image:url(https://acg.toubiec.cn/acgurl?cid=acg&return=ssl);background-size:cover;background-attachment: fixed;}
+  .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+  </style>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <!-- <div class="headband"></div>-->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">世外天堂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做前端，先从博客开始</p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="//music.163.com/outchain/player?type=2&id=509106775&auto=1&height=66"></iframe> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.outerheavendd.com/2020/02/07/vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="漆黑の翼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="世外天堂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue实现购物车</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-07T14:46:14+08:00">
+                2020-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>主要实现的功能有：商品的单价，商品的总价，商品的单选和全选，商品数量的修改，商品的删除等功能。<br>该小型项目采用Vue框架作为主要操作DOM的手段，代码完全原创<br>实现效果如下：<br><img src="/images/shop.jpg" alt="avatar"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line">			html &#123;</span><br><span class="line">				font-size: 100px;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			body &#123;</span><br><span class="line">				font-size: 16px;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			* &#123;</span><br><span class="line">				margin: 0;</span><br><span class="line">				padding: 0;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			li &#123;</span><br><span class="line">				list-style-type: none;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-id">#box</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">margin-top</span>: 0<span class="selector-class">.4rem</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.shop-item</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">height</span>: 1<span class="selector-class">.3rem</span>;</span></span><br><span class="line">				display: flex;</span><br><span class="line">				justify-content: space-between;</span><br><span class="line">				align-items: center;</span><br><span class="line">				background: rgb(252, 252, 252);</span><br><span class="line"><span class="css">				<span class="selector-tag">margin-top</span>: 0<span class="selector-class">.1rem</span>;</span></span><br><span class="line">				position: relative;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.shop-item</span><span class="selector-pseudo">:nth-last-of-type(1)</span>&#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">margin-bottom</span>: 0<span class="selector-class">.6rem</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.shop-item</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">border</span>: 0<span class="selector-class">.01rem</span> <span class="selector-tag">solid</span> <span class="selector-id">#e5e5e5</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.delete</span> &#123;</span></span><br><span class="line">				height: 100%;</span><br><span class="line"><span class="css">				<span class="selector-tag">width</span>: 0<span class="selector-class">.6rem</span>;</span></span><br><span class="line">				color: white;</span><br><span class="line">				outline: none;</span><br><span class="line">				background: rgb(221, 0, 27);</span><br><span class="line">				border: none;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.delete</span><span class="selector-pseudo">:after</span> &#123;</span></span><br><span class="line">				content: '删除';</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span></span><br><span class="line">				text-decoration: none;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.shop-item</span> <span class="selector-tag">img</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">margin-left</span>: 0<span class="selector-class">.05rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">max-height</span>: 0<span class="selector-class">.8rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">max-width</span>: 0<span class="selector-class">.8rem</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.shop-item</span> <span class="selector-tag">a</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#3c3c3c</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.shop-name</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">font-size</span>: 0<span class="selector-class">.12rem</span>;</span></span><br><span class="line">				overflow: hidden;</span><br><span class="line"><span class="css">				<span class="selector-tag">height</span>: 0<span class="selector-class">.5rem</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.shop-name</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#f40</span>;</span></span><br><span class="line">				text-decoration: underline;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.size</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#9c9c9c</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">font-size</span>: 0<span class="selector-class">.12rem</span>;</span></span><br><span class="line">				overflow: hidden;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.item-main</span> &#123;</span></span><br><span class="line">				box-sizing: border-box;</span><br><span class="line"><span class="css">				<span class="selector-tag">padding</span>: 0 0 0 0<span class="selector-class">.05rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">height</span>: 0<span class="selector-class">.8rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">width</span>: 1<span class="selector-class">.5rem</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.price</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#3c3c3c</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">font-size</span>: 0<span class="selector-class">.12rem</span>;</span></span><br><span class="line">				font-weight: 700;</span><br><span class="line">				font-family: Verdana, Tahoma, arial;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.count</span> &#123;</span></span><br><span class="line">				outline: none;</span><br><span class="line">				box-sizing: border-box;</span><br><span class="line"><span class="css">				<span class="selector-tag">height</span>: 0<span class="selector-class">.25rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">line-height</span>: 0<span class="selector-class">.15rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">border</span>: 0<span class="selector-class">.01rem</span> <span class="selector-tag">solid</span> <span class="selector-id">#aaa</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#343434</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">width</span>: 0<span class="selector-class">.4rem</span>;</span></span><br><span class="line">				text-align: center;</span><br><span class="line"><span class="css">				<span class="selector-tag">padding</span>: 0<span class="selector-class">.04rem</span> 0<span class="selector-class">.05rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">background-color</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">background-position</span>: <span class="selector-tag">-0</span><span class="selector-class">.75rem</span> <span class="selector-tag">-3</span><span class="selector-class">.75rem</span>;</span></span><br><span class="line">				float: left;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.reduce</span>,<span class="selector-class">.add</span> &#123;</span></span><br><span class="line">				float: left;</span><br><span class="line"><span class="css">				<span class="selector-tag">height</span>: 0<span class="selector-class">.25rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">width</span>: 0<span class="selector-class">.15rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">border</span>: 0<span class="selector-class">.01rem</span> <span class="selector-tag">solid</span> <span class="selector-id">#e5e5e5</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">background</span>: <span class="selector-id">#f0f0f0</span>;</span></span><br><span class="line">				text-align: center;</span><br><span class="line"><span class="css">				<span class="selector-tag">line-height</span>: 0<span class="selector-class">.23rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#444</span>;</span></span><br><span class="line">				top: 0;</span><br><span class="line">				outline: none;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-id">#countbox</span> &#123;</span></span><br><span class="line">				display: flex;</span><br><span class="line">				flex-flow: nowrap;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.item-sum</span> &#123;</span></span><br><span class="line">				text-align: center;</span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#f40</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">font-size</span>: 0<span class="selector-class">.12rem</span>;</span></span><br><span class="line">				font-weight: 700;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.total</span> <span class="selector-class">.item-total</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">font-size</span>: 0<span class="selector-class">.12rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#f40</span>;</span></span><br><span class="line">				font-weight: 700;</span><br><span class="line">				right: 100px;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.head</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">height</span>: 0<span class="selector-class">.3rem</span>;</span></span><br><span class="line">				background: rgb(221, 0, 27);</span><br><span class="line">				width: 100%;</span><br><span class="line">				display: flex;</span><br><span class="line">				justify-content: center;</span><br><span class="line">				align-items: center;</span><br><span class="line">				color: white;</span><br><span class="line">				position: fixed;</span><br><span class="line">				top: 0;</span><br><span class="line">				z-index: 999;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.foot</span> &#123;				</span></span><br><span class="line">				z-index: 999;</span><br><span class="line"><span class="css">				<span class="selector-tag">height</span>: 0<span class="selector-class">.5rem</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">background</span>: <span class="selector-id">#E5E5E5</span>;</span></span><br><span class="line">				width: 100%;</span><br><span class="line">				display: flex;</span><br><span class="line">				justify-content: space-between;</span><br><span class="line">				align-items: center;</span><br><span class="line">				color: white;</span><br><span class="line">				position: fixed;</span><br><span class="line">				bottom: 0;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.total</span> &#123;</span></span><br><span class="line">				display: flex;</span><br><span class="line">				flex-flow: nowrap;</span><br><span class="line">				align-items: center;</span><br><span class="line">				color: black;</span><br><span class="line">				height: 100%;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.head</span><span class="selector-pseudo">:after</span> &#123;</span></span><br><span class="line">				content: '购物车';</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.footse</span> &#123;</span></span><br><span class="line">				align-items: center;</span><br><span class="line"><span class="css">				<span class="selector-tag">margin-left</span>: 0<span class="selector-class">.1rem</span>;</span></span><br><span class="line">				display: flex;</span><br><span class="line">				flex-flow: nowrap;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.foottext</span> &#123;</span></span><br><span class="line">				color: black;</span><br><span class="line">				font-size: 14px;</span><br><span class="line">				white-space: nowrap;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.foottext</span><span class="selector-pseudo">:after</span> &#123;</span></span><br><span class="line">				content: '全选';</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.submit</span> &#123;</span></span><br><span class="line">				border: none;</span><br><span class="line">				outline: none;</span><br><span class="line">				height: 100%;</span><br><span class="line"><span class="css">				<span class="selector-tag">width</span>: 0<span class="selector-class">.6rem</span>;</span></span><br><span class="line">				color: white;</span><br><span class="line">				background: rgb(221, 0, 27);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.submit</span><span class="selector-pseudo">:after</span> &#123;</span></span><br><span class="line">				content: '结算';</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.singleselect</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">margin-left</span>: 0<span class="selector-class">.1rem</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.nodata</span>&#123;</span></span><br><span class="line">				display: flex;</span><br><span class="line">				margin: 0 auto;</span><br><span class="line">				height: 3rem;</span><br><span class="line">				width: 3rem;</span><br><span class="line">				background-image: url(img/nodata02.png);</span><br><span class="line">				background-repeat: no-repeat;</span><br><span class="line">				justify-content: center;</span><br><span class="line">				align-items: flex-end;</span><br><span class="line">				background-size: cover;</span><br><span class="line">				font-size: 14px;</span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#6d757a</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.totaltxt</span>&#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">padding-right</span>: 0<span class="selector-class">.1rem</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"head"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"items.length"</span>&gt;</span>			</span><br><span class="line">			<span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in items"</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shop-item"</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"items[index].checked"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"singleselect"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"item.src"</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item-main"</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shop-name"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>&#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"size"</span>&gt;</span>&#123;&#123;item.size&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"price"</span>&gt;</span>￥&#123;&#123;item.price&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"countbox"</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> @<span class="attr">click</span>=<span class="string">"countReduce(index)"</span> <span class="attr">class</span>=<span class="string">"reduce"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"item.count"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"count"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> @<span class="attr">click</span>=<span class="string">"countAdd(index)"</span> <span class="attr">class</span>=<span class="string">"add"</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item-sum"</span>&gt;</span>￥&#123;&#123;item.price*item.count&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">v-on:click</span>=<span class="string">"bookRemove"</span> <span class="attr">class</span>=<span class="string">"delete"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"foot"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"footse"</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"checked"</span> @<span class="attr">click</span>=<span class="string">"all"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"allselect"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"allselect"</span> <span class="attr">class</span>=<span class="string">"foottext"</span>&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"total"</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"totaltxt"</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"font-size: 14px;white-space: nowrap;"</span>&gt;</span>合计:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"item-total"</span>&gt;</span>￥&#123;&#123;sum&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span>						</span><br><span class="line">					<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"submit"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">footer</span>&gt;</span>			</span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nodata"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">p</span>&gt;</span>你还暂时没有商品哦~<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"foot"</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"footse"</span>&gt;</span>						</span><br><span class="line">						<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">			el: <span class="string">'#box'</span>,</span></span><br><span class="line">			data: &#123;</span><br><span class="line"><span class="actionscript">				keywords:<span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">				checked: <span class="literal">false</span>,</span></span><br><span class="line">				items: [&#123;</span><br><span class="line"><span class="actionscript">						src: <span class="string">'https://img.alicdn.com/bao/uploaded/i1/2200798231128/O1CN01OpBz5w1KCfK7ZIb5g_!!2200798231128.jpg_80x80.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">						name: <span class="string">'优质舰队collection舰娘响手办响爷二次元动漫美少女机箱精品摆件'</span>,</span></span><br><span class="line"><span class="actionscript">						size: <span class="string">'尺寸：精品现货送海报'</span>,</span></span><br><span class="line">						price: 79,</span><br><span class="line">						count: 1,</span><br><span class="line"><span class="actionscript">						checked: <span class="literal">false</span></span></span><br><span class="line">					&#125;,</span><br><span class="line">					&#123;</span><br><span class="line"><span class="actionscript">						src: <span class="string">'https://img.alicdn.com/bao/uploaded/i3/1085315961/O1CN013r8Hhq1tuBWw3AoNp_!!0-item_pic.jpg_80x80.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">						name: <span class="string">'【年货价】Razer雷蛇黑寡妇蜘蛛竞技幻彩版V2电竞游戏87机械键盘RGB背光吃鸡'</span>,</span></span><br><span class="line"><span class="actionscript">						size: <span class="string">'套餐类型：官方标配 颜色分类：87键(绿轴)'</span>,</span></span><br><span class="line">						price: 749,</span><br><span class="line">						count: 1,</span><br><span class="line"><span class="actionscript">						checked: <span class="literal">false</span></span></span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;,</span><br><span class="line"><span class="actionscript">			mounted: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;&#125;,</span></span><br><span class="line">			methods: &#123;</span><br><span class="line"><span class="actionscript">				all: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">					<span class="keyword">if</span> (!<span class="keyword">this</span>.checked) &#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.items.length; i++) &#123;						</span></span><br><span class="line"><span class="actionscript">							<span class="keyword">this</span>.items[i].checked=<span class="literal">true</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line"><span class="actionscript">					<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.items.length; i++) &#123;						</span></span><br><span class="line"><span class="actionscript">							<span class="keyword">this</span>.items[i].checked=<span class="literal">false</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,</span><br><span class="line"><span class="actionscript">				countAdd: <span class="function"><span class="keyword">function</span><span class="params">(index)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">					<span class="keyword">this</span>.items[index].count++;</span></span><br><span class="line"></span><br><span class="line">				&#125;,</span><br><span class="line"><span class="actionscript">				countReduce: <span class="function"><span class="keyword">function</span><span class="params">(index)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">					<span class="keyword">if</span> (<span class="keyword">this</span>.items[index].count == <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">return</span>;</span></span><br><span class="line">					&#125;</span><br><span class="line"><span class="actionscript">					<span class="keyword">this</span>.items[index].count--;</span></span><br><span class="line">				&#125;,</span><br><span class="line"><span class="actionscript">				bookRemove: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">					<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.items.length; i++) &#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.items.splice(i, <span class="number">1</span>);</span></span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,</span><br><span class="line"><span class="actionscript">				search:<span class="function"><span class="keyword">function</span><span class="params">(keywords)</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">				 <span class="keyword">var</span> newList=[];</span></span><br><span class="line"><span class="actionscript">				 <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="keyword">this</span>.items.length;i++)&#123;</span></span><br><span class="line"><span class="actionscript">				  <span class="keyword">if</span>(<span class="keyword">this</span>.items[i].name.indexOf(keywords)!==<span class="number">-1</span>)&#123;</span></span><br><span class="line"><span class="actionscript">				    newList.push(<span class="keyword">this</span>.items[i])</span></span><br><span class="line">				  &#125;</span><br><span class="line">				 &#125;</span><br><span class="line"><span class="actionscript">				 <span class="keyword">return</span> newList</span></span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;,</span><br><span class="line">			computed: &#123;</span><br><span class="line"><span class="actionscript">				sum: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">					<span class="keyword">var</span> total = <span class="number">0</span>;					</span></span><br><span class="line"><span class="actionscript">					<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.items.length; i++) &#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">if</span>(<span class="keyword">this</span>.items[i].checked==<span class="literal">true</span>)&#123;</span></span><br><span class="line"><span class="actionscript">						total += <span class="keyword">this</span>.items[i].price * <span class="keyword">this</span>.items[i].count;&#125;</span></span><br><span class="line">					&#125;</span><br><span class="line"><span class="actionscript">					<span class="keyword">return</span> total;</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/path/to/wechat-reward-image" alt="漆黑の翼 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/path/to/alipay-reward-image" alt="漆黑の翼 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue%EF%BC%8C%E6%A0%87%E7%AD%BE%EF%BC%8C%E8%B4%AD%E7%89%A9%E8%BD%A6/" rel="tag"># Vue，标签，购物车</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/06/exp/" rel="next" title="正则表达式详解">
+                <i class="fa fa-chevron-left"></i> 正则表达式详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="漆黑の翼" />
+            
+              <p class="site-author-name" itemprop="name">漆黑の翼</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/5058127" title="小翼游戏厅" target="_blank">小翼游戏厅</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cqp.cc/home.php?mod=space&uid=814800" title="酷Q" target="_blank">酷Q</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">漆黑の翼</span>
+
+  
+</div>
+
+
+
+
+
+
+<div class="powered-by">
+  <i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span>
+  <span class="post-meta-divider">|</span>
+  <i class="fa fa-eye"></i><span id="busuanzi_value_site_uv"></span>
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  				<!-- 实现拖动效果，需引入 JQuery UI -->
+				<script src="/assets/jquery-ui.min.js?v=1.12.1"></script>
+				<div class="waifu">
+					<div class="waifu-tips"></div>
+					<canvas id="live2d" class="live2d"></canvas>
+					<div class="waifu-tool">
+						<span class="fui-home"></span>
+						<span class="fui-chat"></span>
+						<span class="fui-eye"></span>
+						<span class="fui-user"></span>
+						<span class="fui-photo"></span>
+						<span class="fui-cross"></span>
+					</div>
+				</div>
+				<script src="/assets/waifu-tips.min.js?v=1.4.2"></script>
+				<script src="/assets/live2d.min.js?v=1.0.5"></script>
+				<script type="text/javascript">
+					/* 可直接修改部分参数 */
+					live2d_settings['modelId'] = 3; // 默认模型 ID
+					live2d_settings['modelTexturesId'] = 42; // 默认材质 ID
+					live2d_settings['modelStorage'] = false; // 不储存模型 ID
+					live2d_settings['canCloseLive2d'] = true; // 隐藏 关闭看板娘 按钮
+					live2d_settings['canTurnToHomePage'] = true; // 隐藏 返回首页 按钮
+					live2d_settings['waifuSize'] = '300x292'; // 看板娘大小
+					live2d_settings['waifuTipsSize'] = '300'; // 提示框大小
+					live2d_settings['waifuFontSize'] = '16px'; // 提示框字体
+					live2d_settings['waifuToolFont'] = '20px'; // 工具栏字体
+					live2d_settings['waifuToolLine'] = '35px'; // 工具栏行高
+					live2d_settings['waifuToolTop'] = '0px'; // 工具栏顶部边距
+					live2d_settings['waifuDraggable'] = 'axis-x'; // 拖拽样式
+					/* 在 initModel 前添加 */
+					initModel("/assets/waifu-tip2s.json?v=1.4.2")
+				</script>
+</body>
+</html>

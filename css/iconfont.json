@@ -1,0 +1,37 @@
+{
+  "id": "1578316",
+  "name": "xxf",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "646600",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e6a9",
+      "unicode_decimal": 59049
+    },
+    {
+      "icon_id": "647470",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "11981829",
+      "name": "menu_hamburger",
+      "font_class": "menu_hamburger",
+      "unicode": "e97e",
+      "unicode_decimal": 59774
+    },
+    {
+      "icon_id": "12468306",
+      "name": "admin",
+      "font_class": "admin",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    }
+  ]
+}

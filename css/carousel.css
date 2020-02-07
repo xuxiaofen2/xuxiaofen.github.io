@@ -1,0 +1,66 @@
+.carousel {
+	max-width:440px;
+	height: 220px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 4px;
+	float: left;
+
+}
+
+.carousel .pic {
+	height: 220px;
+	transition: 1s ease;
+}
+
+.carousel img {
+	width: 440px;
+	height: 220px;
+}
+
+.carousel .pic li {
+	float: left;
+}
+
+.carousel .title li {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	transition: .5s;
+	/* 标题过渡 */
+}
+
+.carousel .title a {
+	color: white;
+}
+.carousel .trig {
+	position: absolute;
+	right: 35px;
+	bottom: 10px;
+}
+
+.carousel .trig li {
+	float: left;
+	background-image: url(../img/icons.png);
+	background-position: -855px -790px;
+	width: 18px;
+	height: 18px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.carousel .trig li:hover {
+	background-position: -919px -790px;
+}
+
+.on {
+	background-position: -855px -727px !important;
+	width: 18px;
+	height: 18px;
+}
+.show{
+	opacity: 1;
+}
+.hide{
+	opacity: 0;
+}
