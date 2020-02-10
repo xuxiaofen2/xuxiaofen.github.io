@@ -76,6 +76,10 @@
 
 
 
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="世外天堂" type="application/atom+xml" />
 
 
 
@@ -276,7 +280,7 @@
 </nav>
 
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="//music.163.com/outchain/player?type=2&id=509106775&auto=0&height=66"></iframe> </div>
+ </div>
     </header>
 
     <main id="main" class="main">
@@ -505,7 +509,14 @@
           </nav>
 
           
-
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+                  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="//music.163.com/outchain/player?type=2&id=509106775&auto=0&height=66"></iframe>
           
 
           
@@ -1124,6 +1135,7 @@ jQuery(document).ready(function($) {
         function() {
             $i.remove();
         });
+        $i.css('cursor','default');
     });
 });
 				</script>

@@ -14,6 +14,9 @@ a {
 	text-decoration: none;
 	color: #CCC;
 }
+.head a{
+	border:none;
+}
 #navl i:before{
 	margin-right: 10px;
 }
@@ -23,21 +26,7 @@ a {
 .float-right{
 	float: right;
 }
-.clearfix:after {
-	content: "";
-	display: block;
-	clear: both;
-}
 
-.container {
-	width: 1226px;
-	margin: 0 auto;
-	position: relative;
-}
-
-.container-fluid {
-	width: 100%;
-}
 
 .footmain {
 	height: 30px;
@@ -95,8 +84,6 @@ a {
 	color: white;
 	background: rgb(226, 89, 139);
 }
-
-
 #hamburger {
 	font-size: 40px;
 	background: white;
@@ -113,16 +100,8 @@ a {
 	display: block;
 }
 
-@media (min-width: 576px) {
-	.container {
-		max-width: 540px;
-	}
-}
 /* 进入PC端 */
 @media (min-width: 768px) {
-	.container {
-		max-width: 720px;
-	}
 	.mobile{
 		display: none;
 	}
@@ -135,17 +114,6 @@ a {
 	}
 }
 
-@media (min-width: 992px) {
-	.container {
-		max-width: 960px;
-	}
-}
-
-@media (min-width: 1200px) {
-	.container {
-		max-width: 1140px;
-	}
-}
 /* 进入移动端 */
 @media (max-width: 767.98px) {
 	.head{
