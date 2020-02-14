@@ -86,14 +86,14 @@
 
 
 
-<meta name="description" content="头像：http:&#x2F;&#x2F;q2.qlogo.cn&#x2F;headimg_dl?dst_uin&#x3D;QQ号&amp;spec&#x3D;100高清头像： http:&#x2F;&#x2F;q.qlogo.cn&#x2F;headimg_dl?dst_uin&#x3D;QQ号&amp;spec&#x3D;640群头像：http:&#x2F;&#x2F;p.qlogo.cn&#x2F;gh&#x2F;群号&#x2F;群号&#x2F;100群高清头像：http:&#x2F;&#x2F;p.qlogo.cn&#x2F;gh&#x2F;群号&#x2F;群号&#x2F;640QQ资料：tencent:&#x2F;">
+<meta name="description" content="个人收集的一些腾讯的相关接口,主要用于与QQ用户信息交互最常见的用于网页推广：加群a标签 1&lt;a target&#x3D;&quot;_blank&quot; href&#x3D;&quot;&#x2F;&#x2F;shang.qq.com&#x2F;wpa&#x2F;qunwpa?idkey&#x3D;e9a5b03d975943a70449aecd9b9724411694c67bb20edb7f3c52a016ce5a93ea&quot;&gt;&lt;img border&#x3D;&quot;0&quot; src&#x3D;&quot;&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="腾讯常用API协议(pc端)">
 <meta property="og:url" content="http://www.outerheavendd.com/2020/02/06/api/index.html">
 <meta property="og:site_name" content="世外天堂">
-<meta property="og:description" content="头像：http:&#x2F;&#x2F;q2.qlogo.cn&#x2F;headimg_dl?dst_uin&#x3D;QQ号&amp;spec&#x3D;100高清头像： http:&#x2F;&#x2F;q.qlogo.cn&#x2F;headimg_dl?dst_uin&#x3D;QQ号&amp;spec&#x3D;640群头像：http:&#x2F;&#x2F;p.qlogo.cn&#x2F;gh&#x2F;群号&#x2F;群号&#x2F;100群高清头像：http:&#x2F;&#x2F;p.qlogo.cn&#x2F;gh&#x2F;群号&#x2F;群号&#x2F;640QQ资料：tencent:&#x2F;">
+<meta property="og:description" content="个人收集的一些腾讯的相关接口,主要用于与QQ用户信息交互最常见的用于网页推广：加群a标签 1&lt;a target&#x3D;&quot;_blank&quot; href&#x3D;&quot;&#x2F;&#x2F;shang.qq.com&#x2F;wpa&#x2F;qunwpa?idkey&#x3D;e9a5b03d975943a70449aecd9b9724411694c67bb20edb7f3c52a016ce5a93ea&quot;&gt;&lt;img border&#x3D;&quot;0&quot; src&#x3D;&quot;&#x2F;">
 <meta property="article:published_time" content="2020-02-06T11:29:10.000Z">
-<meta property="article:modified_time" content="2020-02-06T13:55:26.933Z">
+<meta property="article:modified_time" content="2020-02-11T06:45:41.203Z">
 <meta property="article:author" content="漆黑の翼">
 <meta property="article:tag" content="api">
 <meta name="twitter:card" content="summary">
@@ -123,7 +123,16 @@
     }
   };
 </script>
-
+<script>
+    (function(){
+        if('123456'){
+            if (prompt('请输入文章密码') !== '123456'){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
   <link rel="canonical" href="http://www.outerheavendd.com/2020/02/06/api/"/>
@@ -207,13 +216,6 @@
       
         <p class="site-subtitle">做前端，先从博客开始</p>
       
-  </div>
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
   </div>
 </div>
 <nav class="site-nav">
@@ -387,7 +389,11 @@
       
 
       
-        <p>头像：<a href="http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100" target="_blank" rel="noopener">http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100</a><br>高清头像： <a href="http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640" target="_blank" rel="noopener">http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640</a><br>群头像：<a href="http://p.qlogo.cn/gh/群号/群号/100" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/100</a><br>群高清头像：<a href="http://p.qlogo.cn/gh/群号/群号/640" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/640</a><br>QQ资料：tencent://ContactInfo/?subcmd=ViewInfo&amp;puin=0&amp;uin=QQ号&amp;fuin=QQ号<br>加好友：tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=QQ号&amp;fuin=QQ号<br>临时会话：tencent://Message/?Uin=QQ号&amp;websiteName=qzone.qq.com&amp;Menu=yes&amp;fuin=QQ号</p>
+        <p>个人收集的一些腾讯的相关接口,主要用于与QQ用户信息交互<br>最常见的用于网页推广：<br>加群a标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"//shang.qq.com/wpa/qunwpa?idkey=e9a5b03d975943a70449aecd9b9724411694c67bb20edb7f3c52a016ce5a93ea"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">src</span>=<span class="string">"//pub.idqqimg.com/wpa/images/group.png"</span> <span class="attr">alt</span>=<span class="string">"****"</span> <span class="attr">title</span>=<span class="string">"****"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>qq通讯a标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"http://wpa.qq.com/msgrd?v=3&amp;uin=qq号&amp;site=qq&amp;menu=yes"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">src</span>=<span class="string">"http://wpa.qq.com/pa?p=2:qq号:51"</span> <span class="attr">alt</span>=<span class="string">"点击这里给我发消息"</span> <span class="attr">title</span>=<span class="string">"点击这里给我发消息"</span>/&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>QQ昵称:<a href="https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=QQ号" target="_blank" rel="noopener">https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=QQ号</a><br>头像:<a href="http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100" target="_blank" rel="noopener">http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100</a><br>高清头像:<a href="http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640" target="_blank" rel="noopener">http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640</a><br>群头像:<a href="http://p.qlogo.cn/gh/群号/群号/100" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/100</a><br>群高清头像:<a href="http://p.qlogo.cn/gh/群号/群号/640" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/640</a><br>QQ空间头像:<a href="http://qlogo1.store.qq.com/qzone/QQ号/QQ号/100" target="_blank" rel="noopener">http://qlogo1.store.qq.com/qzone/QQ号/QQ号/100</a><br>QQ资料:tencent://ContactInfo/?subcmd=ViewInfo&amp;puin=0&amp;uin=QQ号&amp;fuin=QQ号<br>加好友:tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=QQ号&amp;fuin=QQ号<br>加群：<a href="http://shang.qq.com/wpa/qunwpa?idkey=群key" target="_blank" rel="noopener">http://shang.qq.com/wpa/qunwpa?idkey=群key</a><br>发起群会话:tencent://groupwpa/?subcmd=all\u0026param=群字段fuin=QQ号<br>发起好友临时会话:tencent://Message/?Uin=QQ号&amp;websiteName=qzone.qq.com&amp;Menu=yes&amp;fuin=QQ号</p>
 
       
     </div>
@@ -498,7 +504,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -509,7 +515,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -520,7 +526,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -536,7 +542,7 @@
               </a>
             </div>
           
-                  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="//music.163.com/outchain/player?type=2&id=509106775&auto=0&height=66"></iframe>
+                  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="////music.163.com/outchain/player?type=2&id=34383149&auto=0&height=66"></iframe>
           
 
           

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.outerheavendd.com/"/>
-  <updated>2020-02-07T14:15:22.906Z</updated>
+  <updated>2020-02-14T02:31:15.443Z</updated>
   <id>http://www.outerheavendd.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人工智能真人动作数据提取</title>
+    <link href="http://www.outerheavendd.com/2020/02/12/openmmd/"/>
+    <id>http://www.outerheavendd.com/2020/02/12/openmmd/</id>
+    <published>2020-02-12T06:42:35.000Z</published>
+    <updated>2020-02-14T02:31:15.443Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果你是一位MMDer，而且想提高K帧效率，那么这篇基于Python的k帧软件你就可以试一试了。<br>OpenMMD到底是干啥的？简洁地讲，OpenMMD是一个可以直接分析现成视频（各种MP4, AVI等视频格式），自动生成vmd动作文件的工具；也就是说，你可以随便从网上找一个（或者自己录一个）人类的舞蹈动作视频，然后直接使用这个分析工具就可以生成该舞蹈动作对应的vmd格式的文件了。<br>不过这里有一点值得说明，这个仅仅是辅助工具而已，至少目前是做不到完美复现原视频的所有动作的，因此想制作出好的视频依旧需要你对k帧去修补美化一番。<br>原github项目：<a href="https://github.com/peterljq/OpenMMD" target="_blank" rel="noopener">https://github.com/peterljq/OpenMMD</a><br>由于github下载慢，推荐网盘：<a href="https://pan.baidu.com/s/1HihyHvivUjkKo6uQP2Bfuw" target="_blank" rel="noopener">https://pan.baidu.com/s/1HihyHvivUjkKo6uQP2Bfuw</a><br>提取码：9ita<br>一：配置环境<br>先配置python环境:<br>我这里用的是python3.7版本，win7系统，CPU：g4560<br>pip install h5py<br>pip install opencv-python<br>pip install matplotlib==3.0.0<br>pip install tensorflow==1.13.1  (这个东西对系统的兼容不是很友好，如果你的CPU不支持AVX,你需要自己手动去找适合你CPU的tensorflow，我这里用的是tensorflow-1.13.1-cp37-cp37m-win_amd64.whl)<br>pip install pyqt5<br>二：开始运行<br>准备一个视频或者图片（要清晰，最好是全身）<br>1.打开OpenposeVideo.bat，拖入你的视频文件或者图片，一路回车，执行完毕后会生成_json文件夹和生成的视频文件<br>2.打开OpenposeTo3D.bat，拖入_json文件夹，生成类似json_3d_2019xxxx_1xxxx_idx01的文件夹，一路回车，如果出现tensorflow的报错你就得重下tensorflow了<br>3.打开VideoToDepth.bat，拖入生成好的视频文件和json_3d_2019xxxx_1xxxx_idx01文件夹，一路回车<br>4.打开3DToVmd.bat，先拖入json_3d_2019xxxx_1xxxx_idx01文件夹，接着找到born文件夹里的あにまさ式ミクボーン.csv拖入，不拖入的话会出现编码错误，一路回车，如果出现unrecognized arguments: -s 1错误，就删掉3DToVmd.bat文件最后一行里的’-s %SMOOTH_TIMES%’<br>最后会生成一个VMD就是我们所要的了<br>效果如下图（亲自测试）<br><img src="/images/openmmd.gif" alt="avatar"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;如果你是一位MMDer，而且想提高K帧效率，那么这篇基于Python的k帧软件你就可以试一试了。&lt;br&gt;OpenMMD到底是干啥的？简洁地讲，OpenMMD是一个可以直接分析现成视频（各种MP4, AVI等视频格式），自动生成vmd动作文件的工具；也就是说，你可以随便从网上
+      
+    
+    </summary>
+    
+    
+      <category term="人工智能" scheme="http://www.outerheavendd.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+      <category term="python" scheme="http://www.outerheavendd.com/tags/python/"/>
+    
+      <category term="mmd" scheme="http://www.outerheavendd.com/tags/mmd/"/>
+    
+      <category term="tensorflow" scheme="http://www.outerheavendd.com/tags/tensorflow/"/>
+    
+      <category term="opencv" scheme="http://www.outerheavendd.com/tags/opencv/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue实现购物车</title>
@@ -84,15 +116,16 @@
     <link href="http://www.outerheavendd.com/2020/02/06/api/"/>
     <id>http://www.outerheavendd.com/2020/02/06/api/</id>
     <published>2020-02-06T11:29:10.000Z</published>
-    <updated>2020-02-06T13:55:26.933Z</updated>
+    <updated>2020-02-11T06:45:41.203Z</updated>
     
-    <content type="html"><![CDATA[<p>头像：<a href="http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100" target="_blank" rel="noopener">http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100</a><br>高清头像： <a href="http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640" target="_blank" rel="noopener">http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640</a><br>群头像：<a href="http://p.qlogo.cn/gh/群号/群号/100" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/100</a><br>群高清头像：<a href="http://p.qlogo.cn/gh/群号/群号/640" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/640</a><br>QQ资料：tencent://ContactInfo/?subcmd=ViewInfo&amp;puin=0&amp;uin=QQ号&amp;fuin=QQ号<br>加好友：tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=QQ号&amp;fuin=QQ号<br>临时会话：tencent://Message/?Uin=QQ号&amp;websiteName=qzone.qq.com&amp;Menu=yes&amp;fuin=QQ号</p>]]></content>
+    <content type="html"><![CDATA[<p>个人收集的一些腾讯的相关接口,主要用于与QQ用户信息交互<br>最常见的用于网页推广：<br>加群a标签</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"//shang.qq.com/wpa/qunwpa?idkey=e9a5b03d975943a70449aecd9b9724411694c67bb20edb7f3c52a016ce5a93ea"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">src</span>=<span class="string">"//pub.idqqimg.com/wpa/images/group.png"</span> <span class="attr">alt</span>=<span class="string">"****"</span> <span class="attr">title</span>=<span class="string">"****"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure><p>qq通讯a标签</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"http://wpa.qq.com/msgrd?v=3&amp;uin=qq号&amp;site=qq&amp;menu=yes"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">src</span>=<span class="string">"http://wpa.qq.com/pa?p=2:qq号:51"</span> <span class="attr">alt</span>=<span class="string">"点击这里给我发消息"</span> <span class="attr">title</span>=<span class="string">"点击这里给我发消息"</span>/&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure><p>QQ昵称:<a href="https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=QQ号" target="_blank" rel="noopener">https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=QQ号</a><br>头像:<a href="http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100" target="_blank" rel="noopener">http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=100</a><br>高清头像:<a href="http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640" target="_blank" rel="noopener">http://q.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;spec=640</a><br>群头像:<a href="http://p.qlogo.cn/gh/群号/群号/100" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/100</a><br>群高清头像:<a href="http://p.qlogo.cn/gh/群号/群号/640" target="_blank" rel="noopener">http://p.qlogo.cn/gh/群号/群号/640</a><br>QQ空间头像:<a href="http://qlogo1.store.qq.com/qzone/QQ号/QQ号/100" target="_blank" rel="noopener">http://qlogo1.store.qq.com/qzone/QQ号/QQ号/100</a><br>QQ资料:tencent://ContactInfo/?subcmd=ViewInfo&amp;puin=0&amp;uin=QQ号&amp;fuin=QQ号<br>加好友:tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=QQ号&amp;fuin=QQ号<br>加群：<a href="http://shang.qq.com/wpa/qunwpa?idkey=群key" target="_blank" rel="noopener">http://shang.qq.com/wpa/qunwpa?idkey=群key</a><br>发起群会话:tencent://groupwpa/?subcmd=all\u0026param=群字段fuin=QQ号<br>发起好友临时会话:tencent://Message/?Uin=QQ号&amp;websiteName=qzone.qq.com&amp;Menu=yes&amp;fuin=QQ号</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;头像：&lt;a href=&quot;http://q2.qlogo.cn/headimg_dl?dst_uin=QQ号&amp;amp;spec=100&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://q2.qlogo.cn/headimg_dl?dst_uin=
+        &lt;p&gt;个人收集的一些腾讯的相关接口,主要用于与QQ用户信息交互&lt;br&gt;最常见的用于网页推广：&lt;br&gt;加群a标签&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;l
       
     
     </summary>
