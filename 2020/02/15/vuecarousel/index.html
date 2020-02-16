@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+<link rel="stylesheet" type="text/css" href="/assets/waifu.min.css?v=1.4.2" />
+<link rel="stylesheet" type="text/css" href="/css/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue,轮播图," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="世外天堂" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="很喜欢bilibili上的轮播图造型，这次就来自己写一下B站上的轮播图吧。首先，B站分旧版和新版，仔细观察会发现，轮播图用的明显不是一套代码，因为旧版轮播图，播到最后一张时就倒回去了，是的，因为每一张图都有过渡，必须遵循这个规则，而且不可能第一张跑在最后一张的后面，这样用户体验不是很好，但我们还是要来做一下这种轮播图。本次采用Vue框架进行开发，当然原生js和JQuery也可以，但是Vue支持数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue实现新旧版B站轮播图">
+<meta property="og:url" content="http://www.outerheavendd.com/2020/02/15/vuecarousel/index.html">
+<meta property="og:site_name" content="世外天堂">
+<meta property="og:description" content="很喜欢bilibili上的轮播图造型，这次就来自己写一下B站上的轮播图吧。首先，B站分旧版和新版，仔细观察会发现，轮播图用的明显不是一套代码，因为旧版轮播图，播到最后一张时就倒回去了，是的，因为每一张图都有过渡，必须遵循这个规则，而且不可能第一张跑在最后一张的后面，这样用户体验不是很好，但我们还是要来做一下这种轮播图。本次采用Vue框架进行开发，当然原生js和JQuery也可以，但是Vue支持数据">
+<meta property="og:image" content="http://www.outerheavendd.com/images/old.gif">
+<meta property="og:image" content="http://www.outerheavendd.com/images/new.gif">
+<meta property="article:published_time" content="2020-02-15T10:48:53.000Z">
+<meta property="article:modified_time" content="2020-02-16T08:19:36.960Z">
+<meta property="article:author" content="漆黑の翼">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="轮播图">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.outerheavendd.com/images/old.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  <link rel="canonical" href="http://www.outerheavendd.com/2020/02/15/vuecarousel/"/>
+
+
+		<div class="head">
+		<a href="https://github.com/xuxiaofen2" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+			<div id="navbar">
+				<div id="navcontain">
+					<div class="mobile">
+						<div class="navtitle">世外天堂</div>
+						<button type="button" id="hamburger" class="iconfont icon-menu_hamburger float-right" onclick="slide()"></button>
+					</div>
+					<div class="navlist">
+						<ul id="navl">
+							<li><a href="/"><i class="menu-item-icon fa fa-home">首页</i></a></li>
+							<li><a href="/tags"><i class="menu-item-icon fa fa-tags">标签</i></a></li>
+							<li><a href="/categories"><i class="menu-item-icon fa fa-th">分类</i></a></li>
+							<li><a href="/archives"><i class="menu-item-icon fa fa-archive">归档</i></a></li>
+							<li><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search ">搜索</i></a></li>
+							<li><a href="/about"><i class="menu-item-icon fa fa-user">关于</i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		function slide() {
+			var n = document.getElementById('navl');
+			var h = document.getElementById('navbar');
+			if (n.style.display == 'none') {
+				n.style.display = 'block';
+				h.style.height = '360px';
+			} else {
+				n.style.display = 'none';
+				h.style.height = '60px';
+			}
+		}
+	</script>	
+
+  <title>Vue实现新旧版B站轮播图 | 世外天堂</title>
+  
+
+
+
+
+
+
+
+
+  <style>
+  body{background-image:url(https://acg.toubiec.cn/acgurl?cid=acg&return=ssl);background-size:cover;background-attachment: fixed;}
+  .footer-inner{
+    color: #ffffff !important;
+  }
+  .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+  </style>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <!-- <div class="headband"></div>-->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">世外天堂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做前端，先从博客开始</p>
+      
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.outerheavendd.com/2020/02/15/vuecarousel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="漆黑の翼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="世外天堂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue实现新旧版B站轮播图</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-15T18:48:53+08:00">
+                2020-02-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-16T16:19:36+08:00">
+                2020-02-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8E%9F%E5%88%9B/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.2k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>很喜欢bilibili上的轮播图造型，这次就来自己写一下B站上的轮播图吧。<br>首先，B站分旧版和新版，仔细观察会发现，轮播图用的明显不是一套代码，因为旧版轮播图，播到最后一张时就倒回去了，是的，因为每一张图都有过渡，必须遵循这个规则，而且不可能第一张跑在最后一张的后面，这样用户体验不是很好，但我们还是要来做一下这种轮播图。<br>本次采用Vue框架进行开发，当然原生js和JQuery也可以，但是Vue支持数据双向绑定，响应速度快，简单，更便于维护。<br>代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line">			* &#123;</span><br><span class="line">				margin: 0;</span><br><span class="line">				padding: 0;</span><br><span class="line">			&#125;</span><br><span class="line">			a&#123;</span><br><span class="line">				text-decoration: none;</span><br><span class="line">			&#125;</span><br><span class="line">			li&#123;</span><br><span class="line">				list-style-type: none;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> &#123;</span></span><br><span class="line">				max-width: 440px;</span><br><span class="line">				height: 220px;</span><br><span class="line">				position: relative;</span><br><span class="line">				overflow: hidden;</span><br><span class="line">				border-radius: 4px;</span><br><span class="line">				float: left;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.pic</span> &#123;</span></span><br><span class="line">				height: 220px;</span><br><span class="line">				transition: 1s ease;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-tag">img</span> &#123;</span></span><br><span class="line">				width: 440px;</span><br><span class="line">				height: 220px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.pic</span> <span class="selector-tag">li</span> &#123;</span></span><br><span class="line">				float: left;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="comment">/* 标题过渡 */</span></span></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.title</span> <span class="selector-tag">li</span> &#123;</span></span><br><span class="line">				position: absolute;</span><br><span class="line">				bottom: 10px;</span><br><span class="line">				left: 10px;</span><br><span class="line"><span class="css">				<span class="selector-tag">transition</span>: <span class="selector-class">.5s</span>;			</span></span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.title</span> <span class="selector-tag">a</span> &#123;</span></span><br><span class="line">				color: white;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.trig</span> &#123;</span></span><br><span class="line">				position: absolute;</span><br><span class="line">				right: 35px;</span><br><span class="line">				bottom: 10px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.trig</span> <span class="selector-tag">li</span> &#123;</span></span><br><span class="line">				float: left;</span><br><span class="line">				background-image: url(img/icons.png);</span><br><span class="line">				background-position: -855px -790px;</span><br><span class="line">				width: 18px;</span><br><span class="line">				height: 18px;</span><br><span class="line">				margin-left: 5px;</span><br><span class="line">				cursor: pointer;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.trig</span> <span class="selector-tag">li</span><span class="selector-pseudo">:hover</span> &#123;</span></span><br><span class="line">				background-position: -919px -790px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.on</span> &#123;</span></span><br><span class="line">				background-position: -855px -727px !important;</span><br><span class="line">				width: 18px;</span><br><span class="line">				height: 18px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.show</span> &#123;</span></span><br><span class="line">				opacity: 1;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.hide</span> &#123;</span></span><br><span class="line">				opacity: 0;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"carousel"</span> @<span class="attr">mouseover</span>=<span class="string">"mouseover"</span> @<span class="attr">mouseout</span>=<span class="string">"mouseout"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pic"</span> <span class="attr">:style</span>=<span class="string">"style"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in pics"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"pics[index].url"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"pics[index].src"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in pics"</span> <span class="attr">:class</span>=<span class="string">"pics[index].on?'show':'hide'"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"pics[index].url"</span>&gt;</span>&#123;&#123;pics[index].title&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"trig"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in pics"</span> <span class="attr">:class</span>=<span class="string">"&#123;on:pics[index].on&#125;"</span> @<span class="attr">click</span>=<span class="string">"toggle(index)"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">			<span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">				el: <span class="string">'.carousel'</span>,</span></span><br><span class="line">				data: &#123;</span><br><span class="line">					index: 0,</span><br><span class="line"><span class="actionscript">					time: <span class="string">''</span>,</span></span><br><span class="line">					pics: [&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/1.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题1'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">true</span></span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/2.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题2'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">false</span></span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/3.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题3'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">false</span></span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/4.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题4'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">false</span></span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/5.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题5'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">false</span></span></span><br><span class="line">						&#125;</span><br><span class="line">					]</span><br><span class="line">				&#125;,</span><br><span class="line">				methods: &#123;</span><br><span class="line"><span class="actionscript">					toggle: <span class="function"><span class="keyword">function</span><span class="params">(index)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.index = index;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.pics[index].on = <span class="literal">true</span>;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.pics.length; i++) &#123;</span></span><br><span class="line">							if (i !== index)</span><br><span class="line"><span class="actionscript">								<span class="keyword">this</span>.pics[i].on = <span class="literal">false</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;,</span><br><span class="line"><span class="actionscript">					mouseover: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">						clearInterval(<span class="keyword">this</span>.time);</span></span><br><span class="line">					&#125;,</span><br><span class="line"><span class="actionscript">					mouseout: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">var</span> that = <span class="keyword">this</span>;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.time = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line">							if (that.index == that.pics.length - 1) &#123;</span><br><span class="line">								that.index = 0;</span><br><span class="line"><span class="actionscript">								that.pics[<span class="number">0</span>].on = <span class="literal">true</span>;</span></span><br><span class="line"><span class="actionscript">								that.pics[that.pics.length - <span class="number">1</span>].on = <span class="literal">false</span>;</span></span><br><span class="line"><span class="actionscript">							&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line">								++that.index;</span><br><span class="line"><span class="actionscript">								that.pics[that.index].on = <span class="literal">true</span>;</span></span><br><span class="line"><span class="actionscript">								that.pics[that.index - <span class="number">1</span>].on = <span class="literal">false</span>;</span></span><br><span class="line">							&#125;</span><br><span class="line">						&#125;, 3000)</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,</span><br><span class="line">				computed: &#123;</span><br><span class="line"><span class="actionscript">					style: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">							marginLeft: <span class="keyword">this</span>.index * (<span class="number">-100</span>) + <span class="string">'%'</span>,</span></span><br><span class="line"><span class="actionscript">							width: <span class="keyword">this</span>.pics.length * <span class="number">100</span> + <span class="string">'%'</span></span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;,</span><br><span class="line">				&#125;,</span><br><span class="line"><span class="actionscript">				mounted: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">					<span class="keyword">this</span>.mouseout();</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>实现效果如图：<br><img src="/images/old.gif" alt="avatar"><br>这种轮播图原理是一串图片通过浮动拼在一起，利用marginLeft的位移作为动画实现的，比较容易实现，缺点是中间隔几个图的时候点击感觉比较晃，而且不是无缝轮播。<br>接下来我们就来实现一下无缝轮播图，也就是新版B站首页所用的。<br>代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line">			* &#123;</span><br><span class="line">				margin: 0;</span><br><span class="line">				padding: 0;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			a &#123;</span><br><span class="line">				text-decoration: none;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			li &#123;</span><br><span class="line">				list-style-type: none;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> &#123;</span></span><br><span class="line">				max-width: 440px;</span><br><span class="line">				height: 220px;</span><br><span class="line">				position: relative;</span><br><span class="line">				overflow: hidden;</span><br><span class="line">				border-radius: 4px;</span><br><span class="line">				float: left;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.pic</span> &#123;</span></span><br><span class="line">				width: 440px;</span><br><span class="line">				height: 220px;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-tag">img</span> &#123;</span></span><br><span class="line">				width: 440px;</span><br><span class="line">				height: 220px;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.pic</span> <span class="selector-tag">li</span> &#123;</span></span><br><span class="line">				position: absolute;</span><br><span class="line">				top: 0;</span><br><span class="line">				left: 0;</span><br><span class="line"><span class="css">				<span class="comment">/* 这里一定要改成绝对定位 */</span></span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="comment">/* 标题过渡 */</span></span></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.title</span> <span class="selector-tag">li</span> &#123;</span></span><br><span class="line">				position: absolute;</span><br><span class="line">				bottom: 10px;</span><br><span class="line">				left: 10px;</span><br><span class="line"><span class="css">				<span class="selector-tag">transition</span>: <span class="selector-class">.5s</span>;</span></span><br><span class="line">				z-index: 999999;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.title</span> <span class="selector-tag">a</span> &#123;</span></span><br><span class="line">				color: white;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.trig</span> &#123;</span></span><br><span class="line">				position: absolute;</span><br><span class="line">				right: 35px;</span><br><span class="line">				bottom: 10px;</span><br><span class="line">				z-index: 999999;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.trig</span> <span class="selector-tag">li</span> &#123;</span></span><br><span class="line">				float: left;</span><br><span class="line">				background-image: url(img/icons.png);</span><br><span class="line">				background-position: -855px -790px;</span><br><span class="line">				width: 18px;</span><br><span class="line">				height: 18px;</span><br><span class="line">				margin-left: 5px;</span><br><span class="line">				cursor: pointer;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.carousel</span> <span class="selector-class">.trig</span> <span class="selector-tag">li</span><span class="selector-pseudo">:hover</span> &#123;</span></span><br><span class="line">				background-position: -919px -790px;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.on</span> &#123;</span></span><br><span class="line">				background-position: -855px -727px !important;</span><br><span class="line">				width: 18px;</span><br><span class="line">				height: 18px;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.show</span> &#123;</span></span><br><span class="line">				opacity: 1;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="css">			<span class="selector-class">.hide</span> &#123;</span></span><br><span class="line">				opacity: 0;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"carousel"</span> @<span class="attr">mouseover</span>=<span class="string">"mouseover"</span> @<span class="attr">mouseout</span>=<span class="string">"mouseout"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pic"</span> <span class="attr">ref</span>=<span class="string">"pic"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in pics"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"pics[index].url"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"pics[index].src"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in pics"</span> <span class="attr">:class</span>=<span class="string">"pics[index].on?'show':'hide'"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"pics[index].url"</span>&gt;</span>&#123;&#123;pics[index].title&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"trig"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in pics"</span> <span class="attr">:class</span>=<span class="string">"&#123;on:pics[index].on&#125;"</span> @<span class="attr">click</span>=<span class="string">"toggle(index)"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">			<span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">				el: <span class="string">'.carousel'</span>,</span></span><br><span class="line">				data: &#123;</span><br><span class="line">					index: 0,</span><br><span class="line"><span class="actionscript">					time: <span class="string">''</span>,</span></span><br><span class="line">					zindex: 1,</span><br><span class="line">					pics: [&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/1.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题1'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">true</span></span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/2.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题2'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">false</span></span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/3.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题3'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">false</span></span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/4.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题4'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">false</span></span></span><br><span class="line">						&#125;,</span><br><span class="line">						&#123;</span><br><span class="line"><span class="actionscript">							url: <span class="string">'#'</span>,</span></span><br><span class="line"><span class="actionscript">							src: <span class="string">'img/5.jpg'</span>,</span></span><br><span class="line"><span class="actionscript">							title: <span class="string">'标题5'</span>,</span></span><br><span class="line"><span class="actionscript">							on: <span class="literal">false</span></span></span><br><span class="line">						&#125;</span><br><span class="line">					]</span><br><span class="line">				&#125;,</span><br><span class="line">				methods: &#123;</span><br><span class="line"><span class="actionscript">					toggle: <span class="function"><span class="keyword">function</span><span class="params">(i)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.index = i;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.pics[i].on = <span class="literal">true</span>;</span></span><br><span class="line"><span class="javascript">						<span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.pics.length; j++) &#123;</span></span><br><span class="line">							if (j !== i)</span><br><span class="line"><span class="actionscript">								<span class="keyword">this</span>.pics[j].on = <span class="literal">false</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.zindex++;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.$refs.pic.children[i].style.zIndex = <span class="keyword">this</span>.zindex;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.$refs.pic.children[i].style.transform = <span class="string">'translate3d(0px,0px,0px)'</span>;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.$refs.pic.children[i].style.transition = <span class="string">'all 0.25s ease 0s'</span>;</span></span><br><span class="line">						if (i &gt;= 1) &#123;</span><br><span class="line"><span class="actionscript">							<span class="comment">//当前轮播图前面的全部向左移</span></span></span><br><span class="line"><span class="javascript">							<span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span></span><br><span class="line"><span class="actionscript">								<span class="keyword">this</span>.$refs.pic.children[j].style.transition = <span class="string">'all 0.55s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">								<span class="keyword">this</span>.$refs.pic.children[j].style.transform = <span class="string">'translate3d(-440px,0px,0px)'</span>;</span></span><br><span class="line">							&#125;</span><br><span class="line"><span class="actionscript">						&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="actionscript">							<span class="comment">//点击第一个按钮，此时第一张图在最后一张图左边</span></span></span><br><span class="line"><span class="actionscript">							<span class="keyword">this</span>.$refs.pic.children[<span class="keyword">this</span>.pics.length - <span class="number">1</span>].style.transition = <span class="string">'all 0.55s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">							<span class="keyword">this</span>.$refs.pic.children[<span class="keyword">this</span>.pics.length - <span class="number">1</span>].style.transform = <span class="string">'translate3d(440px,0px,0px)'</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line"><span class="actionscript">						<span class="keyword">if</span> (i &lt; <span class="keyword">this</span>.pics.length - <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="actionscript">							<span class="comment">//当前轮播图后面的全部向右移</span></span></span><br><span class="line"><span class="javascript">							<span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; <span class="keyword">this</span>.pics.length; j++) &#123;</span></span><br><span class="line"><span class="actionscript">								<span class="keyword">this</span>.$refs.pic.children[j].style.transition = <span class="string">'all 0.55s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">								<span class="keyword">this</span>.$refs.pic.children[j].style.transform = <span class="string">'translate3d(440px,0px,0px)'</span>;</span></span><br><span class="line">							&#125;</span><br><span class="line"><span class="actionscript">						&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="actionscript">							<span class="comment">//点击最后一个按钮，此时第一张图在最后一张图左边</span></span></span><br><span class="line"><span class="actionscript">							<span class="keyword">this</span>.$refs.pic.children[<span class="number">0</span>].style.transition = <span class="string">'all 0.55s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">							<span class="keyword">this</span>.$refs.pic.children[<span class="number">0</span>].style.transform = <span class="string">'translate3d(-440px,0px,0px)'</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;,</span><br><span class="line"><span class="actionscript">					mouseover: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">						clearInterval(<span class="keyword">this</span>.time);</span></span><br><span class="line"><span class="actionscript">						<span class="comment">//鼠标移入，第一张图在最后一张图左边</span></span></span><br><span class="line"><span class="actionscript">						<span class="keyword">if</span> (<span class="keyword">this</span>.index == <span class="keyword">this</span>.pics.length - <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="actionscript">							<span class="keyword">this</span>.$refs.pic.children[<span class="number">0</span>].style.transform = <span class="string">'translate3d(-440px,0px,0px)'</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;,</span><br><span class="line"><span class="actionscript">					mouseout: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">var</span> that = <span class="keyword">this</span>;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">var</span> i = that.index;</span></span><br><span class="line"><span class="actionscript">						<span class="comment">//鼠标移出，第一张图在最后一张图右边</span></span></span><br><span class="line">						if (i == that.pics.length - 1) &#123;</span><br><span class="line"><span class="actionscript">							that.$refs.pic.children[<span class="number">0</span>].style.transform = <span class="string">'translate3d(440px,0px,0px)'</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line"><span class="actionscript">						<span class="comment">//自动轮播</span></span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.time = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line">							that.zindex++;</span><br><span class="line">							if (i == that.pics.length - 1) &#123;</span><br><span class="line">								i = 0;</span><br><span class="line"><span class="actionscript">							&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line">								++i</span><br><span class="line">							&#125;</span><br><span class="line"><span class="actionscript">							that.index = i;<span class="comment">//必须储存index的值，否则值恒为0</span></span></span><br><span class="line">							that.$refs.pic.children[i].style.zIndex = that.zindex;</span><br><span class="line"><span class="actionscript">							that.$refs.pic.children[i].style.transform = <span class="string">'translate3d(0px,0px,0px)'</span>;</span></span><br><span class="line"><span class="actionscript">							that.$refs.pic.children[i].style.transition = <span class="string">'all 0.25s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">							that.pics[i].on = <span class="literal">true</span>;</span></span><br><span class="line"><span class="actionscript">							<span class="comment">//向左移动</span></span></span><br><span class="line">							if (i &gt; 0) &#123;</span><br><span class="line"><span class="actionscript">								that.$refs.pic.children[i - <span class="number">1</span>].style.transition = <span class="string">'all 0.55s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">								that.$refs.pic.children[i - <span class="number">1</span>].style.transform = <span class="string">'translate3d(-440px,0px,0px)'</span>;</span></span><br><span class="line"><span class="actionscript">								that.pics[i - <span class="number">1</span>].on = <span class="literal">false</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">							&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="actionscript">								that.$refs.pic.children[that.pics.length - <span class="number">1</span>].style.transition = <span class="string">'all 0.55s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">								that.$refs.pic.children[that.pics.length - <span class="number">1</span>].style.transform = <span class="string">'translate3d(-440px,0px,0px)'</span>;</span></span><br><span class="line"><span class="actionscript">								that.pics[that.pics.length - <span class="number">1</span>].on = <span class="literal">false</span>;</span></span><br><span class="line">							&#125;</span><br><span class="line"><span class="actionscript">							<span class="comment">//向右移动</span></span></span><br><span class="line">							if (i &lt; that.pics.length - 1) &#123;</span><br><span class="line"><span class="actionscript">								that.$refs.pic.children[i + <span class="number">1</span>].style.transition = <span class="string">'none 0s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">								that.$refs.pic.children[i + <span class="number">1</span>].style.transform = <span class="string">'translate3d(440px,0px,0px)'</span>;</span></span><br><span class="line"><span class="actionscript">							&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="actionscript">								that.$refs.pic.children[<span class="number">0</span>].style.transition = <span class="string">'none 0s ease 0s'</span>;</span></span><br><span class="line"><span class="actionscript">								that.$refs.pic.children[<span class="number">0</span>].style.transform = <span class="string">'translate3d(440px,0px,0px)'</span>;</span></span><br><span class="line">							&#125;</span><br><span class="line">						&#125;, 3000)</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,</span><br><span class="line"><span class="actionscript">				mounted: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">					<span class="keyword">this</span>.mouseout();</span></span><br><span class="line"><span class="actionscript">					<span class="comment">//初始状态，即0++++</span></span></span><br><span class="line"><span class="javascript">					<span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt; <span class="keyword">this</span>.pics.length; j++) &#123;</span></span><br><span class="line"><span class="actionscript">						<span class="keyword">this</span>.$refs.pic.children[j].style.transform = <span class="string">'translate3d(440px,0px,0px)'</span></span></span><br><span class="line">					&#125;</span><br><span class="line"><span class="actionscript">					<span class="keyword">this</span>.$refs.pic.children[<span class="number">0</span>].style.zIndex = <span class="string">'1'</span>;</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这种轮播图比起上一种要复杂的多，但是看起来非常舒服，甚至比swiper的轮播图还要高档，给人的感觉就好像是两张图在相互切换，其他图在怎么变换根本看不出来。<br>根据我仔细的观察，分析出了原理，主要是通过translate3d变换位移，还需要加上叠放次序zindex，不然顺序会乱，你会看到其中一张图在过渡的时候压到其他图，这里的过渡要分开加，而不是写在CSS中，不是无脑加，第一张往最后一张图后面移动时不能有过渡动画，重点还要考虑第一张图和最后一张图的位置关系，这里一个过渡0.25s和一个过渡0.55s并不是没有道理,如果都设为0.55s可能会看到其它图的过渡惨杂进来<br>实现效果如图：<br><img src="/images/new.gif" alt="avatar"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+            <a href="/tags/%E8%BD%AE%E6%92%AD%E5%9B%BE/" rel="tag"># 轮播图</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/12/openmmd/" rel="next" title="人工智能真人动作数据提取">
+                <i class="fa fa-chevron-left"></i> 人工智能真人动作数据提取
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="漆黑の翼" />
+            
+              <p class="site-author-name" itemprop="name">漆黑の翼</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+                  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="////music.163.com/outchain/player?type=2&id=34383149&auto=0&height=66"></iframe>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/5058127" title="小翼游戏厅" target="_blank">小翼游戏厅</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cqp.cc/home.php?mod=space&uid=814800" title="酷Q" target="_blank">酷Q</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">漆黑の翼</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">全站字数统计&#58;</span>
+    
+    <span title="全站字数统计">7.4k</span>
+  
+</div>
+
+
+
+
+
+
+<div class="powered-by">
+  <i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span>
+  <span class="post-meta-divider">|</span>
+  <i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span>
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  				<!-- 实现拖动效果，需引入 JQuery UI -->
+				<script src="/assets/jquery-ui.min.js?v=1.12.1"></script>
+				<div class="waifu">
+					<div class="waifu-tips"></div>
+					<canvas id="live2d" class="live2d"></canvas>
+					<div class="waifu-tool">
+						<span class="fui-home"></span>
+						<span class="fui-chat"></span>
+						<span class="fui-eye"></span>
+						<span class="fui-user"></span>
+						<span class="fui-photo"></span>
+						<span class="fui-cross"></span>
+					</div>
+				</div>
+				<script src="/assets/waifu-tips.min.js?v=1.4.2"></script>
+				<script src="/assets/live2d.min.js?v=1.0.5"></script>
+				<script type="text/javascript">
+					/* 可直接修改部分参数 */
+					live2d_settings['modelId'] = 3; // 默认模型 ID
+					live2d_settings['modelTexturesId'] = 42; // 默认材质 ID
+					live2d_settings['modelStorage'] = false; // 不储存模型 ID
+					live2d_settings['canCloseLive2d'] = true; // 隐藏 关闭看板娘 按钮
+					live2d_settings['canTurnToHomePage'] = true; // 隐藏 返回首页 按钮
+					live2d_settings['waifuSize'] = '300x292'; // 看板娘大小
+					live2d_settings['waifuTipsSize'] = '300'; // 提示框大小
+					live2d_settings['waifuFontSize'] = '16px'; // 提示框字体
+					live2d_settings['waifuToolFont'] = '20px'; // 工具栏字体
+					live2d_settings['waifuToolLine'] = '35px'; // 工具栏行高
+					live2d_settings['waifuToolTop'] = '0px'; // 工具栏顶部边距
+					live2d_settings['waifuDraggable'] = 'axis-x'; // 拖拽样式
+					/* 在 initModel 前添加 */
+					initModel("/assets/waifu-tip2s.json?v=1.4.2")
+          /* 鼠标特效 */
+var a_idx = 0;
+jQuery(document).ready(function($) {
+    $("body").click(function(e) {
+        var a = new Array("❤富强❤","❤民主❤","❤文明❤","❤和谐❤","❤自由❤","❤平等❤","❤公正❤","❤法治❤","❤爱国❤","❤敬业❤","❤诚信❤","❤友善❤");
+        var $i = $("<span></span>").text(a[a_idx]);
+        a_idx = (a_idx + 1) % a.length;
+        var x = e.pageX,
+        y = e.pageY;
+        $i.css({
+            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 180,
+            "opacity": 0
+        },
+        1500,
+        function() {
+            $i.remove();
+        });
+        $i.css('cursor','default');
+    });
+});
+				</script>
+</body>
+</html>
