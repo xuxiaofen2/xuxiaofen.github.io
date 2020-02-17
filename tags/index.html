@@ -205,7 +205,6 @@
   
     
   
-
   <div class="container sidebar-position-left page-post-detail">
     <!-- <div class="headband"></div>-->
     
@@ -1052,6 +1051,11 @@ jQuery(document).ready(function($) {
             $i.remove();
         });
         $i.css('cursor','default');
+        $i.attr({
+      'onSelectStart' :'return false;'
+      });
+
+
     });
 });
 				</script>

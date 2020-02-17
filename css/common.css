@@ -41,7 +41,7 @@ a {
 	z-index: 99;
 	top: 0;
 	height: 180px;
-	background-image: url(http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png);
+	background-image: url(/images/cb1c3ef50e22b6096fde67febe863494caefebad.png);
 	background-position: -200px 0;
 	/* width: 100%; */
 	background-repeat: no-repeat;
@@ -99,9 +99,14 @@ a {
 .navlist{
 	display: block;
 }
-
+#menu{
+	display: none;
+}
 /* 进入PC端 */
 @media (min-width: 768px) {
+	#c_n13{
+		display: block !important;
+	}
 	.mobile{
 		display: none;
 	}
@@ -116,6 +121,9 @@ a {
 
 /* 进入移动端 */
 @media (max-width: 767.98px) {
+	#c_n13{
+		display: none !important;
+	}
 	.head{
 		width: 100%;
 	}
@@ -146,12 +154,4 @@ a {
 	.carousel{
 		display: none;
 	}
-}
-@media (max-width: 1199.98px) {
-  #btn{
-  	display: none;
-  }
-}
-#menu{
-	display: none;
 }
