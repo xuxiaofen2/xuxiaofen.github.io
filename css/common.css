@@ -104,7 +104,7 @@ a {
 }
 /* 进入PC端 */
 @media (min-width: 768px) {
-	#c_n13{
+	#c_n12,#c_n13{
 		display: block !important;
 	}
 	.mobile{
@@ -121,7 +121,7 @@ a {
 
 /* 进入移动端 */
 @media (max-width: 767.98px) {
-	#c_n13{
+	#c_n12,#c_n13{
 		display: none !important;
 	}
 	.head{
