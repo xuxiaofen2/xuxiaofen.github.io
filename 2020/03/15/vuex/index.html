@@ -71,7 +71,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="vue," />
 
 
 
@@ -86,22 +86,38 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="世外天堂">
-<meta property="og:url" content="http://www.outerheavendd.com/categories/%E8%AF%AD%E6%B3%95/index.html">
+<meta name="description" content="如果你之前使用过 vue.js，你一定知道在 vue 中各个组件之间传值的痛苦，在 vue 中我们可以使用 vuex 来保存我们需要管理的状态值，值一旦被修改，所有引用该值的地方就会自动更新，那么接下来我们就来学习一下 vuex 是如何修改状态值的： 我们新建一个 vue 项目（这里由于我们是讲解 vuex，所以对于 vue 项目的创建我们不会讲解太详细）；在命令行输入 vue init webp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5分钟带你Vuex入门">
+<meta property="og:url" content="http://www.outerheavendd.com/2020/03/15/vuex/index.html">
 <meta property="og:site_name" content="世外天堂">
+<meta property="og:description" content="如果你之前使用过 vue.js，你一定知道在 vue 中各个组件之间传值的痛苦，在 vue 中我们可以使用 vuex 来保存我们需要管理的状态值，值一旦被修改，所有引用该值的地方就会自动更新，那么接下来我们就来学习一下 vuex 是如何修改状态值的： 我们新建一个 vue 项目（这里由于我们是讲解 vuex，所以对于 vue 项目的创建我们不会讲解太详细）；在命令行输入 vue init webp">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v1.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v2.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v3.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v4.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v5.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v6.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v7.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v8.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v9.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v10.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v11.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v12.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v13.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v14.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v15.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v16.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v17.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v18.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v19.jpg">
+<meta property="og:image" content="http://www.outerheavendd.com/images/v20.jpg">
+<meta property="article:published_time" content="2020-03-15T08:45:13.000Z">
+<meta property="article:modified_time" content="2020-03-15T09:14:34.221Z">
 <meta property="article:author" content="漆黑の翼">
-<meta property="article:tag" content="小翼，世外天堂">
-<meta property="article:tag" content="开发者">
-<meta property="article:tag" content="编程">
-<meta property="article:tag" content="代码">
-<meta property="article:tag" content="开源">
-<meta property="article:tag" content="IT网站">
-<meta property="article:tag" content="Developer">
-<meta property="article:tag" content="Programmer">
-<meta property="article:tag" content="IT技术博客">
-<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.outerheavendd.com/images/v1.jpg">
 
 
 
@@ -140,7 +156,7 @@
 </script>
 
 
-  <link rel="canonical" href="http://www.outerheavendd.com/categories/语法/"/>
+  <link rel="canonical" href="http://www.outerheavendd.com/2020/03/15/vuex/"/>
 
 
 		<div class="head">
@@ -178,7 +194,7 @@
 		}
 	</script>	
 
-  <title>分类: 语法 | 世外天堂</title>
+  <title>5分钟带你Vuex入门 | 世外天堂</title>
   
 
 
@@ -203,7 +219,7 @@
   
     
   
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <!-- <div class="headband"></div>-->
     
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -290,55 +306,233 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>语法<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.outerheavendd.com/2020/03/15/vuex/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="漆黑の翼">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="世外天堂">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/02/06/exp/" itemprop="url">
-              
-                <span itemprop="name">正则表达式详解</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">5分钟带你Vuex入门</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-06T19:34:41+08:00"
-              content="2020-02-06" >
-          02-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-15T16:45:13+08:00">
+                2020-03-15
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-15T17:14:34+08:00">
+                2020-03-15
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果你之前使用过 vue.js，你一定知道在 vue 中各个组件之间传值的痛苦，在 vue 中我们可以使用 vuex 来保存我们需要管理的状态值，值一旦被修改，所有引用该值的地方就会自动更新，那么接下来我们就来学习一下 vuex 是如何修改状态值的：</p>
+<p>我们新建一个 vue 项目（这里由于我们是讲解 vuex，所以对于 vue 项目的创建我们不会讲解太详细）；在命令行输入 vue init webpack web（使用 webpack 创建一个项目名为 web 的项目）；</p>
+<p>项目创建后，然后安装 vuex，使用命令：npm install vuex –save（安装 vuex 保存到本地），安装成功后你会看到这个界面：<br><img src="/images/v1.jpg" alt=""></p>
+<p>然后我们执行 npm run dev 启动项目，在浏览器输入：”localhost:8080”；正常的话然后我们会看到项目的启动页，<br><img src="/images/v2.jpg" alt=""></p>
+<p>看到这个界面说明项目启动成功，然后我们在项目的 src 目录下新建一个目录 store，在该目录下新建一个 index.js 文件，我们用来创建 vuex 实例，然后在该文件中引入 vue 和 vuex，创建 Vuex.Store 实例保存到变量 store 中，最后使用 export default 导出 store：</p>
+<p><img src="/images/v3.jpg" alt=""></p>
+<p>然后我们在 main.js 文件中引入该文件，在文件里面添加 import store from ‘./store’;，再在 vue 实例全局引入 store 对象；<br><img src="/images/v4.jpg" alt=""></p>
+<p>然后我们就可以开始编写我们的 vuex 业务代码了，那么，我们的数据如何保存？</p>
+<h2 id="State："><a href="#State：" class="headerlink" title="State："></a>State：</h2><p>vuex 中的数据源，我们需要保存的数据就保存在这里，可以在页面通过 this.$store.state 来获取我们定义的数据；</p>
+<p><img src="/images/v5.jpg" alt=""></p>
+<p><img src="/images/v6.jpg" alt=""></p>
+<p>这时候我们页面上就得到了这个 count 值 1：</p>
+<h2 id="Getters："><a href="#Getters：" class="headerlink" title="Getters："></a>Getters：</h2><p>Getter 相当于 vue 中的 computed 计算属性，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算，这里我们可以通过定义 vuex 的 Getter 来获取，Getters 可以用于监听、state 中的值的变化，返回计算后的结果，这里我们修改 Hello World.vue 文件如下：</p>
+<p><img src="/images/v7.jpg" alt=""></p>
+<p>再修改 index.js 文件如下，其中 getters 中的 getStateCount 方法接收一个参数 state，这个参数就是我们用来保存数据的那个对象；</p>
+<p><img src="/images/v8.jpg" alt=""></p>
+<p>然后我们在页面显示：</p>
+<p><img src="/images/v9.jpg" alt=""></p>
+<h2 id="Mutations："><a href="#Mutations：" class="headerlink" title="Mutations："></a>Mutations：</h2><p>数据我们在页面是获取到了，但是如果我们需要修改 count 值怎么办？如果需要修改 store 中的值唯一的方法就是提交 mutation 来修改，我们现在 Hello World.vue 文件中添加两个按钮，一个加 1，一个减 1；这里我们点击按钮调用 addFun（执行加的方法）和 reductionFun（执行减法的方法），然后在里面直接提交 mutations 中的方法修改值：</p>
+<p><img src="/images/v10.jpg" alt=""></p>
+<p>修改 index.js 文件，添加 mutations，在 mutations 中定义两个函数，用来对 count 加 1 和减 1，这里定义的两个方法就是上面 commit 提交的两个方法如下：</p>
+<p><img src="/images/v11.jpg" alt=""></p>
+<p>页面上点击+、- 按钮操作数据：</p>
+<p>点击 “+”按钮</p>
+<p><img src="/images/v12.jpg" alt=""></p>
+<p>执行成功，我们再连续点击三次减 “-” 按钮</p>
+<p><img src="/images/v13.jpg" alt=""></p>
+<p>ok！完美。</p>
+<h2 id="Actions："><a href="#Actions：" class="headerlink" title="Actions："></a>Actions：</h2><p>我们看到，当点击三次后值从 2 变成了-1；页面上的值是改变了；我们达到了修改 store 中状态值的目的，但是，官方并不介意我们这样直接去修改 store 里面的值，而是让我们去提交一个 actions，在 actions 中提交 mutation 再去修改状态值，接下来我们修改 index.js 文件，先定义 actions 提交 mutation 的函数：</p>
+<p><img src="/images/v14.jpg" alt=""></p>
+<p>然后我们去修改 Hello World.vue 文件：</p>
+<p><img src="/images/v15.jpg" alt=""></p>
+<p>这里我们把 commit 提交 mutations 修改为使用 dispatch 来提交 actions；我们点击页面，效果是一样的。</p>
+<p><img src="/images/v16.jpg" alt=""></p>
+<p>好了，我们这里已经实现了一个基本的 vuex 修改状态值的完整流程，如果我们需要指定加减的数值，那么我们直接传入 dispatch 中的第二个参数，然后在 actions 中的对应函数中接受参数在传递给 mutations 中的函数进行计算：</p>
+<p><img src="/images/v17.jpg" alt=""></p>
+<p><img src="/images/v18.jpg" alt=""></p>
+<p>这个时候我们再去点击“ - ”按钮就会发现不再是减 1 了，而是减去 10 了。</p>
+<h2 id="mapState、mapGetters、mapActions"><a href="#mapState、mapGetters、mapActions" class="headerlink" title="mapState、mapGetters、mapActions"></a>mapState、mapGetters、mapActions</h2><p>如果我们不喜欢这种在页面上使用“this.$stroe.state.count”和“this.$store.dispatch(‘funName’)”这种很长的写法，那么我们可以使用 mapState、mapGetters、mapActions 就不会这么麻烦了；</p>
+<p>我们修改 Hello World.vue 文件如下：</p>
+<p><img src="/images/v19.jpg" alt=""></p>
+<p>此时我们在页面使用 count1 调用：</p>
+<p><img src="/images/v20.jpg" alt=""></p>
+<p>正常显示，效果是一样的，我们就可以不再使用很长的写法来调用了。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/29/webpack/" rel="next" title="Webpack入门教程">
+                <i class="fa fa-chevron-left"></i> Webpack入门教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +540,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -366,8 +564,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -456,6 +663,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#State："><span class="nav-number">1.</span> <span class="nav-text">State：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getters："><span class="nav-number">2.</span> <span class="nav-text">Getters：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutations："><span class="nav-number">3.</span> <span class="nav-text">Mutations：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Actions："><span class="nav-number">4.</span> <span class="nav-text">Actions：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mapState、mapGetters、mapActions"><span class="nav-number">5.</span> <span class="nav-text">mapState、mapGetters、mapActions</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -615,6 +838,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

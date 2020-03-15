@@ -88,7 +88,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="世外天堂">
-<meta property="og:url" content="http://www.outerheavendd.com/tags/Vue/index.html">
+<meta property="og:url" content="http://www.outerheavendd.com/tags/vue/index.html">
 <meta property="og:site_name" content="世外天堂">
 <meta property="article:author" content="漆黑の翼">
 <meta property="article:tag" content="小翼，世外天堂">
@@ -140,7 +140,7 @@
 </script>
 
 
-  <link rel="canonical" href="http://www.outerheavendd.com/tags/Vue/"/>
+  <link rel="canonical" href="http://www.outerheavendd.com/tags/vue/"/>
 
 
 		<div class="head">
@@ -178,7 +178,7 @@
 		}
 	</script>	
 
-  <title>标签: Vue | 世外天堂</title>
+  <title>标签: vue | 世外天堂</title>
   
 
 
@@ -189,7 +189,7 @@
 
 
   <style>
-  body{background-image:url(https://acg.toubiec.cn/acgurl?cid=acg&return=ssl);background-size:cover;background-attachment: fixed;}
+  body{background-image:url(http://api.mtyqx.cn/api/random.php);background-size:cover;background-attachment: fixed;}
   .footer-inner{
     color: #ffffff !important;
   }
@@ -297,7 +297,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Vue<small>标签</small>
+        <h1>vue<small>标签</small>
         </h1>
       </div>
 
@@ -309,37 +309,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2020/02/15/vuecarousel/" itemprop="url">
+            <a class="post-title-link" href="/2020/03/15/vuex/" itemprop="url">
               
-                <span itemprop="name">Vue实现新旧版B站轮播图</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-15T18:48:53+08:00"
-              content="2020-02-15" >
-          02-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/02/07/vue/" itemprop="url">
-              
-                <span itemprop="name">Vue实现购物车</span>
+                <span itemprop="name">5分钟带你Vuex入门</span>
               
             </a>
         
@@ -347,9 +319,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-07T14:46:14+08:00"
-              content="2020-02-07" >
-          02-07
+              datetime="2020-03-15T16:45:13+08:00"
+              content="2020-03-15" >
+          03-15
         </time>
       </div>
 
@@ -413,7 +385,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -435,7 +407,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -513,7 +485,7 @@
     
       <span class="post-meta-item-text">全站字数统计&#58;</span>
     
-    <span title="全站字数统计">16k</span>
+    <span title="全站字数统计">17.2k</span>
   
 </div>
 
@@ -1064,6 +1036,33 @@ jQuery(document).ready(function($) {
         y = e.pageY;
         $i.css({
             "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 180,
+            "opacity": 0
+        },
+        1500,
+        function() {
+            $i.remove();
+        });
+        $i.css('cursor','default');
+        $i.attr({
+      'onSelectStart' :'return false;'
+      });
+
+
+    });
+});
+				</script>
+</body>
+</html>
+z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
             "top": y - 20,
             "left": x,
             "position": "absolute",
