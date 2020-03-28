@@ -1,0 +1,422 @@
+<!DOCTYPE HTML>
+<!-- Diapo is a Pixedelic free jQuery slideshow | Manuel Masia (designer and developer) -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>雫的菜单</title>
+
+		<meta name="viewport" content="width=960">
+		<!--///////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //		Styles
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+		<link rel='stylesheet' id='style-css' href='diapo.css' type='text/css' media='all'>
+		<script type='text/javascript' src='scripts/jquery.min.js'></script>
+		<!--[if !IE]><!-->
+		<script type='text/javascript' src='scripts/jquery.mobile-1.0rc2.customized.min.js'></script>
+		<!--<![endif]-->
+		<script type='text/javascript' src='scripts/jquery.easing.1.3.js'></script>
+		<script type='text/javascript' src='scripts/jquery.hoverIntent.minified.js'></script>
+		<script type='text/javascript' src='scripts/diapo.js'></script>
+
+		<script>
+			$(function() {
+				$('.pix_diapo').diapo();
+			});
+		</script>
+
+		<style>
+			body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+}
+section {
+	display: block;
+	overflow: hidden;
+	position: relative;
+}
+.button {
+	background: #014464;
+	background: -moz-linear-gradient(top, #0D658E, #0C577A 50%, #014D71 51%, #003E5C);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0E658E), color-stop(.5, #0C577A), color-stop(.5, #014D71), to(#003E5C)); 
+	border: 1px solid #368DBE;
+	border-top: 1px solid #c3d6df;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: 0 1px 3px black;
+	-webkit-box-shadow: 0 1px 3px black;
+	box-shadow: 0 1px 3px black;
+	color: white;
+	display: block;
+	font-size: 12px;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+	padding: 5px 20px;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px black;
+	text-transform: uppercase;
+	width: auto;
+}
+.button2 {
+	background: #d9ae00;
+	background: -moz-linear-gradient(top, #b28b06, #9c7705 50%, #9c7705 51%, #5c4100);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #b28b06), color-stop(.5, #9c7705), color-stop(.5, #9c7705), to(#5c4100)); 
+	border: 1px solid #c7a60c;
+	border-top: 1px solid #e5d51f;
+}
+.button3 {
+	background: #ffd838;
+	background: -moz-linear-gradient(top, #edbf21, #c89b0f 50%, #9c7705 51%, #906706);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #edbf21), color-stop(.5, #c89b0f), color-stop(.5, #c89b0f), to(#906706)); 
+	border: 1px solid #c7a60c;
+	border-top: 1px solid #e5d51f;
+}
+.price_table {
+    float: right;
+	font-size: 12px;
+    margin: 10px auto 0;
+    padding: 20px 0;
+	position: relative;
+	width: 570px;
+}
+.price_table .price_column.highlighted {
+	background: #ffd838;
+    margin: -5px!important;
+	padding: 10px;
+    z-index: 2;
+}
+.price_table .price_column {
+	display: block;
+	margin: 5px;
+    float: left;
+    position: absolute;
+	width: 180px;
+    z-index: 1;
+}
+.price_table .price_column > div {
+	background: #eeeeee;
+}
+.price_table .price_column > div > div {
+	padding: 10px 15px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #f6f6f6;
+}
+.price_table .price_column > div > p {
+	padding: 10px 15px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #f6f6f6;
+}
+.price_table .price_column > div > ul {
+	padding: 10px 15px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #f6f6f6;
+}
+.price_table .price_title {
+	background-color: #333333;
+    border-top: 0!important;
+    color: #ffffff;
+    font-size: 14px;
+}
+.price_table .highlighted .price_title {
+    font-size: 16px;
+}
+.price_table .price_price {
+    font-size: 36px;
+    line-height: 40px;
+}
+.price_table .highlighted  .price_price {
+    font-size: 40px;
+    line-height: 44px;
+}
+.price_table .price_explanation {
+	font-size: 10px;
+    line-height: 13px;
+    text-transform: uppercase;
+}
+.price_table .cusButton {
+	background-color: #333333;
+	display: block;
+    text-align: center;
+}
+.price_table li {
+	padding: 5px 0;
+}
+.price_table div.pix_check {
+	background: url(images/demo/list-check-green.png) no-repeat 15px center;
+    padding-left: 38px!important;
+}
+.price_table div.pix_error {
+	background: url(images/demo/list-error.png) no-repeat 15px center;
+    padding-left: 38px!important;
+}
+.tt{
+	transition: all 400ms ease-in-out;
+	font-family: 'Francois One', Helvetica, Arial, sans-serif;
+	color: #f89bb4;
+	font-size: 70px;
+	height: 92px;
+	position: relative;
+	top: 30px;
+	text-align: center;
+	 text-shadow: 1.5px 1.5px 0 #fff, 0px 1.5px 0 #fff, -1.5px -1.5px 0 #fff, -1.5px -1.5px 0 #fff, -1.5px 1.5px 0 #fff, 1.5px -1.5px 0 #fff, 0.77782px 0.77782px 0 #e62915, 1.55563px 1.55563px 0 #e62915, 2.33345px 2.33345px 0 #e62915, 3.11127px 3.11127px 0 #e62915, 3.88909px 3.88909px 0 #e62915, 4.6669px 4.6669px 0 #e62915, 5.44472px 5.44472px 0 #e62915, 6.22254px 6.22254px 0 #e62915, 7.00036px 7.00036px 0 #e62915, 7.77817px 7.77817px 0 #e62915;
+	}
+.tt:hover{	
+	    text-shadow: 1.5px 1.5px 0 #d38076, -1.5px -1.5px 0 #d38076, -1.5px -1.5px 0 #d38076, -1.5px 1.5px 0 #d38076, 1.5px -1.5px 0 #d38076;
+	
+}
+</style>
+
+	</head>
+	<body style="background-image: url(images/t015976e75372a8af30.jpg);background-position: 70em 0; background-repeat: no-repeat;">
+		<section><div class="tt">雫的菜单</div></section>
+		<section>
+			
+			<div style="overflow:hidden; width:960px; margin: 5px 0 0; padding:0 20px;">
+				<div class="pix_diapo">
+					<!-- 轮播主体1 -->
+					<div data-thumb="images/thumbs/1.jpg">
+						<img src="images/slides/f1.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							签到
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							支持名片式签到，查询排名：签到排名；签到定制：签到定制（支持jpg,png,png，每人最多4张）
+						</div>
+					</div>
+					<!-- 轮播主体2 -->
+					<div data-thumb="images/thumbs/2.jpg">
+						<img src="images/slides/f2.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							查看属性
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@属性
+						</div>
+					</div>
+					<!-- 轮播主体3 -->
+					<div data-thumb="images/thumbs/3.jpg">
+						<img src="images/slides/f3.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							道具商店
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							进入商店： @道具/商店/商城；查看库存: @仓库/背包；赠送礼物: @给你+道具名称/@送你+道具名称
+						</div>
+					</div>
+					<!-- 轮播主体4 -->
+					<div data-thumb="images/thumbs/4.jpg">
+						<img src="images/slides/f4.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							天气预报
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							查询某城市天气： @城市名+天气；查询自己城市天气： @本地天气；告诉自己所在城市： @我（家）住+城市名
+						</div>
+					</div>
+					<!-- 轮播主体5 -->
+					<div data-thumb="images/thumbs/5.jpg">
+						<img src="images/slides/f5.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							点歌
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							QQ音乐：点歌+歌曲名；网易音乐：网易点歌+歌曲名（加歌手更精确）
+						</div>
+					</div>
+					<!-- 轮播主体6 -->
+
+					<!-- 轮播主体7 -->
+					<div data-thumb="images/thumbs/7.jpg">
+						<img src="images/slides/f7.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							讲笑话
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@讲笑话
+						</div>
+					</div>
+					<!-- 轮播主体8 -->
+					<div data-thumb="images/thumbs/8.jpg">
+						<img src="images/slides/f8.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							龙王
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							龙王查询： @谁是龙王；迫害龙王： @迫害龙王
+						</div>
+					</div>
+					<!-- 轮播主体9 -->
+					<div data-thumb="images/thumbs/9.jpg">
+						<img src="images/slides/f9.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							壁纸福利
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@福利
+						</div>
+					</div>
+					<!-- 轮播主体10 -->
+					<div data-thumb="images/thumbs/10.jpg">
+						<img src="images/slides/f10.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							图片清晰度优化
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@图片优化
+						</div>
+					</div>
+					<!-- 轮播主体11 -->
+					<div data-thumb="images/thumbs/11.jpg">
+						<img src="images/slides/f11.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							百度翻译
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							翻译成中文： @翻译+内容；指定语言翻译： @中译英/@英译中/@中译日/@日译中/@日译英/@英译日+内容
+						</div>
+					</div>
+					<!-- 轮播主体12 -->
+					<div data-thumb="images/thumbs/12.jpg">
+						<img src="images/slides/f12.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							OCR识图
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@图片+识别/@图片+翻译
+						</div>
+					</div>
+					<!-- 轮播主体13 -->
+					<div data-thumb="images/thumbs/13.jpg">
+						<img src="images/slides/f13.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							语音识别
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							语音转汉语：@语音翻译；语音识别：语音（私聊）；
+						</div>
+					</div>
+					<!-- 轮播主体14 -->
+					<div data-thumb="images/thumbs/14.jpg">
+						<img src="images/slides/f14.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							番剧查询
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@图片+包含“番”的关键词
+						</div>
+					</div>
+					<!-- 轮播主体15 -->
+					<div data-thumb="images/thumbs/15.jpg">
+						<img src="images/slides/f15.jpg">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							快递查询
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							查快递+单号(私聊)
+						</div>
+					</div>
+					<!-- 轮播主体16 -->
+					<div data-thumb="images/thumbs/16.jpg">
+						<img src="images/slides/f16.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							闹钟
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							当天提醒： @X点X分叫（/提醒）我（+事件名；明天/后天提醒： @明天X点X分叫（/提醒）我（+事件名）；后天X点X分叫（/提醒）我（+事件名）；倒计时提醒： @X分种后叫（/提醒）我（+事件名）/X小时后叫（/提醒）我（+事件名）(数字必须是阿拉伯数字，分钟可为“整”、“半”)
+						</div>
+					</div>
+					<!-- 轮播主体17 -->
+					<div data-thumb="images/thumbs/17.jpg">
+						<img src="images/slides/f17.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							计算器
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@计算+计算表达式
+						</div>
+					</div>
+					<!-- 轮播主体18 -->
+					<div data-thumb="images/thumbs/18.jpg">
+						<img src="images/slides/f18.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							猜拳
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@猜拳
+						</div>
+					</div>					
+					<!-- 轮播主体19 -->
+					<div data-thumb="images/thumbs/19.jpg">
+						<img src="images/slides/f19.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							色图检测
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							群里检测到色图（绅士图）时会有一定几率回应
+						</div>
+					</div>
+					<!-- 轮播主体20 -->
+					<div data-thumb="images/thumbs/20.jpg">
+						<img src="images/slides/f20.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							进群审核
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							全自动审核论坛用户和“Cipher”用户，进群10分钟内无人发言者自动踢出
+						</div>
+					</div>
+					<!-- 轮播主体21 -->
+					<div data-thumb="images/thumbs/21.jpg">
+						<img src="images/slides/f21.jpg">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							steam查询
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							查询分类排名： @steam新品； @steam热销； @steam即将发售； @steam优惠;查询游戏： @steam搜索+游戏名； @steamid搜索+id名
+						</div>
+					</div>
+					<!-- 轮播主体22 -->
+					<div data-thumb="images/thumbs/22.jpg">
+						<img src="images/slides/f22.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							lol查询
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							搜索英雄： @lol搜索+英雄名称（称号/名称）；搜索召唤师： @lol召唤师搜索+召唤师名称；英雄排名： @lol上单排名; @lol中单排名; @lol打野排名; @lol下路排名; @lol辅助排名
+						</div>
+					</div>
+					<!-- 轮播主体23 -->
+					<div data-thumb="images/thumbs/23.jpg">
+						<img src="images/slides/f23.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							AI换脸
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							@ai换脸
+						</div>
+					</div>
+					<!-- 轮播主体24 -->
+					<div data-thumb="images/thumbs/24.jpg">
+						<img src="images/slides/f24.png">
+						<div class="caption elemHover fromRight" style="bottom:65px; padding-bottom:5px; color:#ff0; text-transform:uppercase">
+							禁言套餐
+						</div>
+						<div class="caption elemHover fromLeft" style="padding-top:5px;">
+							检测到关键词时进行自我禁言
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+
+		</section>
+
+	</body>
+</html>
