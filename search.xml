@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>python实现滑块验证</title>
+    <title>Python实现滑块验证</title>
     <url>/2020/04/07/selenium/</url>
     <content><![CDATA[<p>python中安装好selenium包  pip install selenium<br>点击下载chrome的webdriver： <a href="http://chromedriver.storage.googleapis.com/index.html，目前只有32位的。" target="_blank" rel="noopener">http://chromedriver.storage.googleapis.com/index.html，目前只有32位的。</a><br>1.驱动下载完成，解压<br>2.将解压后文件chromedriver.exe复制到python的Scripts安装目录下（我的：E:\Python\Python36-32\Scripts），并且添加到path环境变量<br>3.将目录chrome的安装目录添加到path环境变量。（我的：C:\Program Files (x86)\Google\Chrome\Application\chrome.exe）<br>4.运行下面代码：成功打开百度即为成功：（别拉到cmd里直接运行，各种报错，我是在VS终端下调试成功的）<br>    from selenium import webdriver<br>    driver = webdriver.Chrome()<br>　　driver.get(‘<a href="http://www.baidu.com&#39;" target="_blank" rel="noopener">http://www.baidu.com&#39;</a>)</p>
 <p>然后是详细代码：(代码转自奥哥)</p>
